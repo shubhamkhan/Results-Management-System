@@ -5,7 +5,6 @@
     mysqli_query($con, "INSERT INTO `teaches` (`fac_id`, `sub_code`, `year`) VALUES ('".$_POST["fact_name"]."', '".$_POST["subj_code"]."', '".$_POST["year"]."')") or die(mysqli_error($con));
   }
  ?>
- <script src="../vendors/jquery/dist/jquery.min.js"></script>
  <!-- jQuery custom content scroller -->
 <!-- ===========================================================
 		                       BEGIN PAGE
@@ -15,7 +14,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Form Validation</h3>
+                <h3>TEACHES</h3>
               </div>
             </div>
 
@@ -25,7 +24,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Form validation <small>sub title</small></h2>
+                    <h2>Add Teaches <small>Set the topic for the teacher </small></h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -68,8 +67,9 @@
 
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                          <button type="reset" class="btn btn-primary">Reset</button>
+                          <a href="admin_teaches_table_view.php" class="btn btn-primary"><i class="fa fa-arrow-left"></i>Back</a>
                           <button type="submit" class="btn btn-success">Submit</button>
+                          <button type="reset" class="btn btn-primary">Reset</button>
             						  <input type="hidden" name="hid">
                         </div>
                       </div>
@@ -84,6 +84,9 @@
 <!--  ===========================================================
 		                        END PAGE
   		=========================================================== -->
+<?php
+  include "../resources/footer_all.php";
+?>
 <script>
 $(document).ready(function(){
  $('.action').change(function(){
@@ -101,10 +104,10 @@ $(document).ready(function(){
      result = 'fact_name';
     }
     $.ajax({
-      url:"fatch_teaches_code.php",
-      method:"POST",
-      data:{action:action, query:query},
-      success:function(data){
+      url: "fatch_teaches_code.php",
+      type: "POST",
+      data: {action:action, query:query},
+      success: function(data){
         $('#'+result).html(data);
       }
     })
@@ -112,6 +115,3 @@ $(document).ready(function(){
  });
 });
 </script>
-<?php
-  include "../resources/footer_all.php";
-?>

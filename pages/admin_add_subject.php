@@ -5,7 +5,6 @@
 		mysqli_query($con,"INSERT INTO `subject`(`sub_code`, `sub_name`, `th_marks`, `pr_marks`, `total_marks`, `sem`) VALUES ('".$_POST['code']."','".$_POST['name']."','".$_POST['th']."','".$_POST['pr']."','".$_POST['total']."','".$_POST['sem']."')") or die(mysqli_error($con));
 	}
  ?>
-
 <!-- ===========================================================
 		                       BEGIN PAGE
 		 =========================================================== -->
@@ -14,7 +13,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>SUBJECT ENTRY</h3>
+                <h3>SUBJECT</h3>
               </div>
             </div>
 
@@ -24,13 +23,12 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>ADD SUBJECT <small>details into the database</small></h2>
+                    <h2>Add new Subject <small>new Subject details are recorded</small></h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
 
                     <form method="POST" action="" class="form-horizontal form-label-left" novalidate>
-                      <span class="section">Subject Information</span>
 
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Subject Code <span class="required">*</span>
@@ -94,8 +92,9 @@
 
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                          <button type="reset" class="btn btn-primary">Reset</button>
+                          <a href="admin_subject_table_view.php" class="btn btn-primary"><i class="fa fa-arrow-left"></i>Back</a>
             						  <button type="submit" class="btn btn-success">Submit</button>
+                          <button type="reset" class="btn btn-primary">Reset</button>
             						  <input type="hidden" name="hid">
 						            </div>
                       </div>

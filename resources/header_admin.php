@@ -1,4 +1,9 @@
 <?php
+  SESSION_START();
+  if(!$_SESSION['khjshdagsj']){
+    SESSION_DESTROY();
+    header("location:index.php?msg=UnSuccessfully");
+  }
   include "../resources/connection.php";
  ?>
 <!DOCTYPE html>
@@ -35,6 +40,7 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+
   </head>
 
   <body class="nav-md">
@@ -52,7 +58,7 @@
             <div class="profile clearfix">
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2>Administrator</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -97,9 +103,9 @@
                       <li><a href="admin_teaches_table_view.php">Teaches List</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Marks <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-table"></i> Takes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="tables.html">Tables</a></li>
+                      <li><a href="admin_takes_table_view.php">Subject Takes List</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -120,7 +126,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    John Doe
+                    Administrator
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

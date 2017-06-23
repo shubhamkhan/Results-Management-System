@@ -1,7 +1,7 @@
 <?php
   include "../resources/header_admin.php";
+  //echo '<script type="text/javascript"> alert('.$_SESSION['id'].')</script>';
  ?>
-  <script src="../vendors/jquery/dist/jquery.min.js"></script>
 <!-- ===========================================================
 		                       BEGIN PAGE
 		 =========================================================== -->
@@ -10,7 +10,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Form Validation</h3>
+                <h3>USER</h3>
               </div>
             </div>
 
@@ -20,14 +20,12 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Form validation <small>sub title</small></h2>
+                    <h2>Add User <small>Add a new Faculty or Student</small></h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
 
                     <form class="form-horizontal form-label-left" method="POST" action="" novalidate>
-                      <span class="section">Personal Info</span>
-
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Select User Type</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -151,13 +149,11 @@
 
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
+                          <a href="admin_enable_faculty_table_view.php" class="btn btn-primary"><i class="fa fa-arrow-left"></i>Back</a>
+                          <button type="submit" class="btn btn-success">Submit</button>
                           <button type="reset" class="btn btn-primary">Reset</button>
-                          <button type="submit" name="submit" class="btn btn-success">Submit</button>
                         </div>
                       </div>
-
-                      <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
-
                     </form>
                   </div>
                 </div>
@@ -169,28 +165,10 @@
 <!--  ===========================================================
 		                        END PAGE
   		=========================================================== -->
-      <script>
-      $( document ).ready(function(){
-          $('#usrType').change(function(){
-             selection = $(this).val();
-             switch(selection)
-             {
-                 case 'student':
-                     $('#deptType').show();
-                     $('#semType').show();
-                     break;
-                 default:
-                     $('#deptType').hide();
-                     $('#semType').hide();
-                     break;
-             }
-          });
-        });
-      </script>
 <?php
   include "../resources/footer_all.php";
   if(isset($_POST['submit'])){
-    $address = $_POST['city'] . $_POST['dist'] . $_POST['state'] . $_POST['cnty'] . $_POST['pin'];
+    $address = $_POST['city'] .','. $_POST['dist'] .','. $_POST['state'] .','. $_POST['cnty'] .','. $_POST['pin'];
     $user_id = '';
     if($_POST['usrType'] == 'student'){
       $roll_no = '';
@@ -230,3 +208,21 @@
     }
 	}
 ?>
+<script>
+  $( document ).ready(function(){
+    $('#usrType').change(function(){
+        selection = $(this).val();
+        switch(selection)
+        {
+            case 'student':
+                $('#deptType').show();
+                $('#semType').show();
+                break;
+            default:
+                $('#deptType').hide();
+                $('#semType').hide();
+                break;
+        }
+    });
+});
+</script>

@@ -7,15 +7,24 @@ if(isset($_POST['hid']) and isset($_POST['e_mail']) and isset($_POST['password']
 		$chk_usr = mysqli_fetch_array($res,MYSQLI_ASSOC);
 		if($chk_usr['user_type'] == "Admin")
 		{
-			echo "LogIn".$chk_usr['user_type'];
+			SESSION_START();
+			$_SESSION['khjshdagsj'] = md5(time().$chk_usr['user_id']);
+			$_SESSION['id'] = $chk_usr['user_id'];
+			header("location:admin_add_users.php?msg=Successfully");
 		}
 		if($chk_usr['user_type'] == "Faculty")
 		{
-			echo "LogIn".$chk_usr['user_type'];
+			SESSION_START();
+			$_SESSION['jhdhgyebha'] = md5(time().$chk_usr['user_id']);
+			$_SESSION['id'] = $chk_usr['user_id'];
+			header("location:faculty_profile_users.php?msg=Successfully");
 		}
 		if($chk_usr['user_type'] == "Student")
 		{
-			echo "LogIn".$chk_usr['user_type'];
+			SESSION_START();
+			$_SESSION['ayukgcystf'] = md5(time().$chk_usr['user_id']);
+			$_SESSION['id'] = $chk_usr['user_id'];
+			header("location:atudent_profile_users.php?msg=Successfully");
 		}
 	}else{
 		header("location:index.php?msg=Login UnSuccessfully");
