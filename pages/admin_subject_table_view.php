@@ -21,7 +21,7 @@
                   <div class="x_title">
                     <h2>Subject Details <small>Subject record list</small></h2>
                     <div class="pull-right">
-                      <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
+                      <a href="admin_subject_pdf.php" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                     </div>
                     <div class="clearfix"></div>
                   </div>
@@ -33,12 +33,13 @@
                           <th>Subject Code</th>
                           <th>Subject Name</th>
                           <th>Semester</th>
+                          <th>Department</th>
                           <th>Action</th>
                         </tr>
                       </thead>
               				<tbody>
                 					<?php
-                							$res=mysqli_query($con,"SELECT `sub_code`, `th_marks`, `pr_marks`, `total_marks`, `sub_name`, `sem` FROM `subject`");
+                							$res=mysqli_query($con,"SELECT `sub_code`, `th_marks`, `pr_marks`, `total_marks`, `sub_name`, `sem`, `department` FROM `subject`");
                 							while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
                 							{
                 					?>
@@ -46,6 +47,7 @@
               							<td><?php echo $row['sub_code']; ?> </td>
               							<td><?php echo $row['sub_name']; ?> </td>
               							<td><?php echo $row['sem']; ?> </td>
+                            <td><?php echo $row['department']; ?> </td>
               							<td>
                                 <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo $row['sub_code']; ?>"><i class="fa fa-folder"></i> View </button>
                                 <span class='delete btn btn-danger btn-xs' id="<?php echo $row['sub_code']; ?>"><i class="fa fa-trash-o"></i> Delete </span>
@@ -86,8 +88,13 @@
                                       <div class="col-md-6 col-sm-6 col-xs-12">Semester</div>
                                       <div class="col-md-6 col-sm-6 col-xs-12"><p><?php echo $row['sem']; ?></p></div>
                                     </div>
+                                    <div class="row">
+                                      <div class="col-md-6 col-sm-6 col-xs-12">Department</div>
+                                      <div class="col-md-6 col-sm-6 col-xs-12"><p><?php echo $row['department']; ?></p></div>
+                                    </div>
                                   </div>
                                   <div class="modal-footer">
+                                    <a href="admin_subject_details_pdf.php?id=<?php echo $row['sub_code']; ?>" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                   </div>
                                 </div>

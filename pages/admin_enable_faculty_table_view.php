@@ -21,7 +21,7 @@
                   <div class="x_title">
                     <h2>Faculty <small>Enable Faculty Information</small></h2>
                     <div class="pull-right">
-                      <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
+                      <a href="admin_enable_faculty_pdf.php" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                     </div>
                     <div class="clearfix"></div>
                   </div>
@@ -33,12 +33,13 @@
                           <th>Address</th>
                           <th>Email ID</th>
                           <th>Phone No.</th>
+                          <th>Department</th>
 						              <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
               						<?php
-              						$res=mysqli_query($con,"SELECT `faculty`.`user_id`, `faculty`.`name`, `faculty`.`address`, `faculty`.`date_of_birth`, `faculty`.`phone_no`, `faculty`.`qualification`, `faculty`.`experience`, `faculty`.`join_date`, `faculty`.`last_log_in`, `users`.`email_id` FROM `faculty` JOIN `users` ON `faculty`.`user_id` = `users`.`user_id` WHERE `users`.`user_type`= 'Faculty' and `users`.`user_status`='0'");
+              						$res=mysqli_query($con,"SELECT `faculty`.`user_id`, `faculty`.`name`, `faculty`.`address`, `faculty`.`date_of_birth`, `faculty`.`phone_no`, `faculty`.`qualification`, `faculty`.`experience`, `faculty`.`department`, `faculty`.`join_date`, `faculty`.`last_log_in`, `users`.`email_id` FROM `faculty` JOIN `users` ON `faculty`.`user_id` = `users`.`user_id` WHERE `users`.`user_type`= 'Faculty' and `users`.`user_status`='0' ORDER BY `department` ASC");
               						while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
               						{
               						?>
@@ -47,6 +48,7 @@
               						<td><?php echo $row['address']; ?> </td>
               						<td><?php echo $row['email_id']; ?> </td>
               						<td><?php echo $row['phone_no']; ?> </td>
+                          <td><?php echo $row['department']; ?> </td>
                           <td>
                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo $row['user_id']; ?>"><i class="fa fa-folder"></i> View </button>
                             <a href="faculty_edit.php?id=<?php echo $row['user_id'];?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
@@ -97,11 +99,16 @@
                                   <div class="col-md-6 col-sm-6 col-xs-12"><p><?php echo $row['experience']; ?></p></div>
                                 </div>
                                 <div class="row">
+                                  <div class="col-md-6 col-sm-6 col-xs-12">Department</div>
+                                  <div class="col-md-6 col-sm-6 col-xs-12"><p><?php echo $row['department']; ?></p></div>
+                                </div>
+                                <div class="row">
                                   <div class="col-md-6 col-sm-6 col-xs-12">Last Login</div>
                                   <div class="col-md-6 col-sm-6 col-xs-12"><p><?php echo $row['last_log_in']; ?></p></div>
                                 </div>
                               </div>
                               <div class="modal-footer">
+                                <a href="admin_subject_details_pdf.php?id=<?php echo $row['user_id']; ?>" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                               </div>
                             </div>

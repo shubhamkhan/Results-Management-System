@@ -21,7 +21,7 @@
                   <div class="x_title">
                     <h2>Student <small>Disable Student Information</small></h2>
                     <div class="pull-right">
-                      <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
+                      <a href="admin_disabled_student_pdf.php" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                     </div>
                     <div class="clearfix"></div>
                   </div>
@@ -42,7 +42,7 @@
                       </thead>
                       <tbody>
               						<?php
-              						$res=mysqli_query($con,"SELECT `student`.`reg_no`, `student`.`roll_no`, `student`.`user_id`, `student`.`name`, `student`.`address`, `student`.`phone_no`, `student`.`date_of_birth`, `student`.`sem`, `student`.`department`, `student`.`reg_date`, `student`.`last_log_in`, `users`.`email_id` FROM `student` JOIN `users` ON `student`.`user_id` = `users`.`user_id` WHERE `users`.`user_type`= 'Student' and `users`.`user_status`='1'");
+              						$res=mysqli_query($con,"SELECT `student`.`reg_no`, `student`.`roll_no`, `student`.`user_id`, `student`.`name`, `student`.`address`, `student`.`phone_no`, `student`.`date_of_birth`, `student`.`sem`, `student`.`department`, `student`.`reg_date`, `student`.`last_log_in`, `users`.`email_id` FROM `student` JOIN `users` ON `student`.`user_id` = `users`.`user_id` WHERE `users`.`user_type`= 'Student' and `users`.`user_status`='1' ORDER BY `department`, `sem` ASC");
               						while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
               						{
               						?>
@@ -118,6 +118,7 @@
                                 </div>
                               </div>
                               <div class="modal-footer">
+                                <a href="admin_subject_details_pdf.php?id=<?php echo $row['user_id']; ?>" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                               </div>
                             </div>

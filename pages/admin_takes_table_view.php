@@ -9,7 +9,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Subject List</h3>
+                <h3>TAKES</h3>
               </div>
             </div>
 
@@ -19,9 +19,9 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Subject Details <small>Semester wise</small></h2>
+                    <h2>Takes Details <small>List of subjects taken for the student</small></h2>
                     <div class="pull-right">
-                      <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
+                      <a href="admin_takes_pdf.php" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                     </div>
                     <div class="clearfix"></div>
                   </div>
@@ -32,19 +32,21 @@
                         <tr>
                           <th>Roll No</th>
                           <th>Subject Code</th>
+                          <th>Department</th>
                           <th>Year</th>
                           <th>Action</th>
                         </tr>
                       </thead>
               				<tbody>
                 					<?php
-                							$res=mysqli_query($con,"SELECT `take_id`, `roll_no`, `sub_code`, `year` FROM `takes`");
+                							$res=mysqli_query($con,"SELECT `takes`.`take_id`, `takes`.`roll_no`, `takes`.`sub_code`, `takes`.`year`, `student`.`department` FROM `takes` JOIN `student` ON `takes`.`roll_no` = `student`.`roll_no` ORDER BY `department`, `year` ASC");
                 							while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
                 							{
                 					?>
               						<tr>
               							<td><?php echo $row['roll_no']; ?> </td>
               							<td><?php echo $row['sub_code']; ?> </td>
+                            <td><?php echo $row['department']; ?> </td>
               							<td><?php echo $row['year']; ?> </td>
               							<td>
                                 <span class='delete btn btn-danger btn-xs' id="<?php echo $row['take_id']; ?>"><i class="fa fa-trash-o"></i> Delete </span>

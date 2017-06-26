@@ -1,6 +1,20 @@
 <?php
   include "../resources/header_admin.php";
-  //echo '<script type="text/javascript"> alert('.$_SESSION['id'].')</script>';
+  if(isset($_POST['hid'])){
+    $address = $_POST['city'] .','. $_POST['dist'] .','. $_POST['state'] .','. $_POST['cnty'] .','. $_POST['pin'];
+    $user_id = time()+1;
+    date_default_timezone_set('Asia/Kolkata');
+    if($_POST['usrType'] == 'student'){
+      mysqli_query($con, "INSERT INTO `users`(`user_id`, `email_id`, `password`, `user_type`, `user_status`) VALUES ('".$user_id."','".$_POST['email']."','".$_POST['password']."','".$_POST['usrType']."','0')");
+      mysqli_query($con, "INSERT INTO `student`(`reg_no`, `roll_no`, `user_id`, `name`, `address`, `phone_no`, `sem`, `department`, `reg_date`) VALUES ('".$_POST['reg_no']."','".$_POST['roll_no']."','".$user_id."','".$_POST['name']."','".$address."','".$_POST['phone']."','".$_POST['sem']."','".$_POST['dept']."','".date("d-m-Y H:i:s")."')");
+    }
+    if($_POST['usrType'] == 'faculty'){
+      $fac_id = time();
+      mysqli_query($con, "INSERT INTO `users`(`user_id`, `email_id`, `password`, `user_type`, `user_status`) VALUES ('".$user_id."','".$_POST['email']."','".$_POST['password']."','".$_POST['usrType']."','0')");
+      mysqli_query($con, "INSERT INTO `faculty`(`fac_id`, `user_id`, `name`, `address`,`phone_no`, `department`, `join_date`) VALUES ('".$fac_id."','".$user_id."','".$_POST['name']."','".$address."','".$_POST['phone']."','".$_POST['dept']."','".date("d-m-Y H:i:s")."')");
+    }
+    //echo '<script type="text/javascript"> alert('.$user_id.')</script>';
+  }
  ?>
 <!-- ===========================================================
 		                       BEGIN PAGE
@@ -25,7 +39,7 @@
                   </div>
                   <div class="x_content">
 
-                    <form class="form-horizontal form-label-left" method="POST" action="" novalidate>
+                    <form method="POST" action="" class="form-horizontal form-label-left" novalidate>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Select User Type</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -40,7 +54,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Full name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input name="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
+                          <input name="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="50" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
                         </div>
                       </div>
 
@@ -48,7 +62,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">Mobile number <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" name="phone" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+                          <input type="number" name="phone" required="required" data-validate-length-range="10" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
@@ -84,7 +98,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pin">Pincode <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" name="pin" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+                          <input type="number" name="pin" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
@@ -119,29 +133,45 @@
                         </div>
                       </div>
 
-                      <div id="deptType" class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Department</label>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Department</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select name="dept" class="select2_single form-control" tabindex="-1">
                             <option value="" selected="">Select Department</option>
-                  					<option name="CSE" value="cst">Computer Science and Engineering</option>
-                            <option name="IT" value="it">Information Technology</option>
-                  					<option name="ECE" value="ece">Electronics and Telecommunication Engineering</option>
-                  					<option name="ME" value="me">Mechanical Engineering</option>
-                            <option name="EE" value="ee">Electrical Engineering</option>
-                            <option name="CE" value="ce">Civil Engineering</option>
+                  					<option value="CSE">Computer Science and Engineering</option>
+                            <option value="IT">Information Technology</option>
+                  					<option value="ECE">Electronics and Telecommunication Engineering</option>
+                  					<option value="ME">Mechanical Engineering</option>
+                            <option value="EE">Electrical Engineering</option>
+                            <option value="CE">Civil Engineering</option>
                           </select>
                         </div>
                       </div>
 
                       <div id="semType" class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Semester</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Semester</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select name="sem" class="select2_single form-control" tabindex="-1">
                             <option value="" selected="">Select Semester</option>
                             <option value="1">First Semester</option>
                             <option value="3">Third Semester</option>
                           </select>
+                        </div>
+                      </div>
+
+                      <div id="rollType" class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="roll_no">Roll No. <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="number" name="roll_no" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+
+                      <div id="regType" class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="reg_no">Reg. No. <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="number" name="reg_no" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
@@ -152,6 +182,7 @@
                           <a href="admin_enable_faculty_table_view.php" class="btn btn-primary"><i class="fa fa-arrow-left"></i>Back</a>
                           <button type="submit" class="btn btn-success">Submit</button>
                           <button type="reset" class="btn btn-primary">Reset</button>
+                          <input type="hidden" name="hid">
                         </div>
                       </div>
                     </form>
@@ -167,46 +198,6 @@
   		=========================================================== -->
 <?php
   include "../resources/footer_all.php";
-  if(isset($_POST['submit'])){
-    $address = $_POST['city'] .','. $_POST['dist'] .','. $_POST['state'] .','. $_POST['cnty'] .','. $_POST['pin'];
-    $user_id = '';
-    if($_POST['usrType'] == 'student'){
-      $roll_no = '';
-      $reg_no = '';
-      switch ($_POST["dept"]) {
-        case 'CSE':
-          # code...
-          break;
-        case 'IT':
-          # code...
-          break;
-        case 'ECE':
-          # code...
-          break;
-        case 'ME':
-          # code...
-          break;
-        case 'EE':
-          # code...
-          break;
-        case 'CE':
-          # code...
-          break;
-
-        default:
-          # code...
-          break;
-      }
-      date_default_timezone_set('Asia/Kolkata');
-      mysqli_query($con, "INSERT INTO `users`(`user_id`, `email_id`, `password`, `user_type`, `user_status`) VALUES ('".$user_id."','".$_POST['email']."','".$_POST['password']."','".$_POST['usrType']."','0')");
-      mysqli_query($con, "INSERT INTO `student`(`reg_no`, `roll_no`, `user_id`, `name`, `address`, `phone_no`, `sem`, `department`, `reg_date`) VALUES ('".$reg_no."','".$roll_no."','".$user_id."','".$_POST['name']."','".$address."','".$_POST['phone']."','".$_POST['sem']."','".$_POST['dept']."','".date("d-m-Y H:i:s")."')");
-    }
-    if($_POST['usrType'] == 'faculty'){
-      date_default_timezone_set('Asia/Kolkata');
-      mysqli_query($con, "INSERT INTO `users`(`user_id`, `email_id`, `password`, `user_type`, `user_status`) VALUES ('".$user_id."','".$_POST['email']."','".$_POST['password']."','".$_POST['usrType']."','0')");
-      mysqli_query($con, "INSERT INTO `faculty`(`user_id`, `name`, `address`,`phone_no`, `join_date`) VALUES ('".$user_id."','".$_POST['name']."','".$address."','".$_POST['phone']."','".date("d-m-Y H:i:s")."')");
-    }
-	}
 ?>
 <script>
   $( document ).ready(function(){
@@ -215,12 +206,14 @@
         switch(selection)
         {
             case 'student':
-                $('#deptType').show();
                 $('#semType').show();
+                $('#rollType').show();
+                $('#regType').show();
                 break;
             default:
-                $('#deptType').hide();
                 $('#semType').hide();
+                $('#rollType').hide();
+                $('#regType').hide();
                 break;
         }
     });

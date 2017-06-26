@@ -19,9 +19,9 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Teaches Details <small>Semester wise</small></h2>
+                    <h2>Teaches Details <small>List of topic taken for the teacher</small></h2>
                     <div class="pull-right">
-                      <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
+                      <a href="admin_teaches_pdf.php" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                     </div>
                     <div class="clearfix"></div>
                   </div>
@@ -31,6 +31,7 @@
                       <thead>
                         <tr>
                           <th>Faculty Name</th>
+                          <th>Department</th>
                           <th>Subject CODE</th>
                           <th>YEAR</th>
                           <th>Action</th>
@@ -38,14 +39,15 @@
                       </thead>
               				<tbody>
                 					<?php
-                							$res=mysqli_query($con,"SELECT `fac_id`, `sub_code`, `year` FROM `teaches");
+                							$res=mysqli_query($con,"SELECT `fac_id`, `sub_code`, `year` FROM `teaches` ORDER BY `year` ASC");
                 							while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
                 							{
-                                $result = mysqli_query($con,"SELECT `name` FROM `faculty` WHERE `fac_id` = '".$row['fac_id']."'");
+                                $result = mysqli_query($con,"SELECT `name`, `department` FROM `faculty` WHERE `fac_id` = '".$row['fac_id']."' ORDER BY `department` ASC");
                                 $fac_name = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 						?>
               						<tr>
                             <td><?php echo $fac_name['name']; ?> </td>
+                            <td><?php echo $fac_name['department']; ?> </td>
               							<td><?php echo $row['sub_code']; ?> </td>
               							<td><?php echo $row['year']; ?> </td>
               							<td>

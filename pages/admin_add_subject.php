@@ -2,7 +2,7 @@
   include "../resources/header_admin.php";
   if(isset($_POST['hid']))
 	{
-		mysqli_query($con,"INSERT INTO `subject`(`sub_code`, `sub_name`, `th_marks`, `pr_marks`, `total_marks`, `sem`) VALUES ('".$_POST['code']."','".$_POST['name']."','".$_POST['th']."','".$_POST['pr']."','".$_POST['total']."','".$_POST['sem']."')") or die(mysqli_error($con));
+		mysqli_query($con,"INSERT INTO `subject`(`sub_code`, `sub_name`, `th_marks`, `pr_marks`, `total_marks`, `sem`, `department`) VALUES ('".$_POST['code']."','".$_POST['name']."','".$_POST['th']."','".$_POST['pr']."','".$_POST['total']."','".$_POST['sem']."','".$_POST['dept']."')") or die(mysqli_error($con));
 	}
  ?>
 <!-- ===========================================================
@@ -84,6 +84,21 @@
                             <option value="6">Sixth</option>
                             <option value="7">Seventh</option>
                             <option value="8">Eighth</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Department</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select name="dept" class="select2_single form-control" tabindex="-1">
+                            <option value="" selected="">Select Department</option>
+                  					<option value="CSE">Computer Science and Engineering</option>
+                            <option value="IT">Information Technology</option>
+                  					<option value="ECE">Electronics and Telecommunication Engineering</option>
+                  					<option value="ME">Mechanical Engineering</option>
+                            <option value="EE">Electrical Engineering</option>
+                            <option value="CE">Civil Engineering</option>
                           </select>
                         </div>
                       </div>

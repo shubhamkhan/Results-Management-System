@@ -30,7 +30,6 @@
                   <div class="x_content">
 
                     <form method="POST" action="" class="form-horizontal form-label-left" novalidate>
-                      <span class="section">Personal Info</span>
 
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Year</label>
@@ -41,6 +40,21 @@
                             <option value="2">Second Year</option>
                             <option value="3">Thard Year</option>
                             <option value="4">Forth Year</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Department</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select name="dept" id="year" class="select2_single form-control action" tabindex="-1">
+                            <option value="" selected="">Select Department</option>
+                  					<option value="CSE">Computer Science and Engineering</option>
+                            <option value="IT">Information Technology</option>
+                  					<option value="ECE">Electronics and Telecommunication Engineering</option>
+                  					<option value="ME">Mechanical Engineering</option>
+                            <option value="EE">Electrical Engineering</option>
+                            <option value="CE">Civil Engineering</option>
                           </select>
                         </div>
                       </div>

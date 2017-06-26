@@ -49,7 +49,7 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-database"></i> <span>RM System</span></a>
+              <a href="#" class="site_title"><i class="fa fa-database"></i> <span>RM System</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -97,13 +97,13 @@
                       <li><a href="admin_subject_table_view.php">Show Subjects List</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Teaches <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-university"></i> Teaches <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="admin_add_teaches.php">Add Teaches</a></li>
                       <li><a href="admin_teaches_table_view.php">Teaches List</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Takes <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-graduation-cap"></i> Takes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="admin_takes_table_view.php">Subject Takes List</a></li>
                     </ul>
