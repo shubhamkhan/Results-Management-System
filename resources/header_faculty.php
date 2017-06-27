@@ -1,5 +1,12 @@
 <?php
+SESSION_START();
+if(!$_SESSION['jhdhgyebha']){
+  SESSION_DESTROY();
+  header("location:index.php?msg=UnSuccessfully");
+}
   include "../resources/connection.php";
+  $result = mysqli_query($con, "SELECT `name` FROM `faculty` WHERE `user_id` = '".$_SESSION['id']."'");
+  $row = mysqli_fetch_array($result);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +56,7 @@
             <div class="profile clearfix">
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2><?php echo $row['name']; ?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -100,7 +107,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    John Doe
+                    <?php echo $row['name']; ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

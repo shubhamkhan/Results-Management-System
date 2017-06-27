@@ -38,15 +38,15 @@ $pdf->AddPage();
 $pdf->SetFont("Times","",11);
 $pdf->Cell(70,10,"ROLL NO.",1,0,'C');
 $pdf->Cell(50,10,"SUBJECT CODE",1,0,'C');
-$pdf->Cell(40,10,"YEAR",1,0,'C');
+$pdf->Cell(40,10,"SEMESTER",1,0,'C');
 $pdf->Cell(30,10,"DEPARTMENT",1,1,'C');
 $pdf->SetFont("Times","B",9);
-$res=mysqli_query($con,"SELECT `takes`.`roll_no`, `takes`.`sub_code`, `takes`.`year`, `student`.`department` FROM `takes` JOIN `student` ON `takes`.`roll_no` = `student`.`roll_no` ORDER BY `department`, `year` ASC");
+$res=mysqli_query($con,"SELECT `takes`.`roll_no`, `takes`.`sub_code`, `takes`.`sem`, `student`.`department` FROM `takes` JOIN `student` ON `takes`.`roll_no` = `student`.`roll_no` ORDER BY `department`, `sem` ASC");
 while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
 {
   $pdf->Cell(70,10,$row['roll_no'],1,0,'C');
   $pdf->Cell(50,10,$row['sub_code'],1,0,'C');
-  $pdf->Cell(40,10,$row['year'],1,0,'C');
+  $pdf->Cell(40,10,$row['sem'],1,0,'C');
   $pdf->Cell(30,10,$row['department'],1,1,'C');
 }
 $pdf->output();

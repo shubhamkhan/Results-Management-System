@@ -33,13 +33,13 @@
                           <th>Roll No</th>
                           <th>Subject Code</th>
                           <th>Department</th>
-                          <th>Year</th>
+                          <th>Semester</th>
                           <th>Action</th>
                         </tr>
                       </thead>
               				<tbody>
                 					<?php
-                							$res=mysqli_query($con,"SELECT `takes`.`take_id`, `takes`.`roll_no`, `takes`.`sub_code`, `takes`.`year`, `student`.`department` FROM `takes` JOIN `student` ON `takes`.`roll_no` = `student`.`roll_no` ORDER BY `department`, `year` ASC");
+                							$res=mysqli_query($con,"SELECT `takes`.`take_id`, `takes`.`roll_no`, `takes`.`sub_code`, `takes`.`sem`, `student`.`department` FROM `takes` JOIN `student` ON `takes`.`roll_no` = `student`.`roll_no` ORDER BY `department`, `sem` ASC");
                 							while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
                 							{
                 					?>
@@ -47,7 +47,7 @@
               							<td><?php echo $row['roll_no']; ?> </td>
               							<td><?php echo $row['sub_code']; ?> </td>
                             <td><?php echo $row['department']; ?> </td>
-              							<td><?php echo $row['year']; ?> </td>
+              							<td><?php echo $row['sem']; ?> </td>
               							<td>
                                 <span class='delete btn btn-danger btn-xs' id="<?php echo $row['take_id']; ?>"><i class="fa fa-trash-o"></i> Delete </span>
               							</td>

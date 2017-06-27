@@ -39,9 +39,9 @@ $pdf->SetFont("Times","",11);
 $pdf->Cell(70,10,"NAME",1,0,'C');
 $pdf->Cell(50,10,"DEPARTMENT",1,0,'C');
 $pdf->Cell(40,10,"SUBJECT CODE",1,0,'C');
-$pdf->Cell(30,10,"YEAR",1,1,'C');
+$pdf->Cell(30,10,"SEMESTER",1,1,'C');
 $pdf->SetFont("Times","B",9);
-$res=mysqli_query($con,"SELECT `fac_id`, `sub_code`, `year` FROM `teaches` ORDER BY `year` ASC");
+$res=mysqli_query($con,"SELECT `fac_id`, `sub_code`, `sem` FROM `teaches` ORDER BY `sem` ASC");
 while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
 {
   $result = mysqli_query($con,"SELECT `name`, `department` FROM `faculty` WHERE `fac_id` = '".$row['fac_id']."' ORDER BY `department` ASC");
@@ -49,7 +49,7 @@ while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
   $pdf->Cell(70,10,$fac_name['name'],1,0,'C');
   $pdf->Cell(50,10,$fac_name['department'],1,0,'C');
   $pdf->Cell(40,10,$row['sub_code'],1,0,'C');
-  $pdf->Cell(30,10,$row['year'],1,1,'C');
+  $pdf->Cell(30,10,$row['sem'],1,1,'C');
 }
 $pdf->output();
 ?>

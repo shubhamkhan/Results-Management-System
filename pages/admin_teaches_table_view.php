@@ -33,13 +33,13 @@
                           <th>Faculty Name</th>
                           <th>Department</th>
                           <th>Subject CODE</th>
-                          <th>YEAR</th>
+                          <th>Semester</th>
                           <th>Action</th>
                         </tr>
                       </thead>
               				<tbody>
                 					<?php
-                							$res=mysqli_query($con,"SELECT `fac_id`, `sub_code`, `year` FROM `teaches` ORDER BY `year` ASC");
+                							$res=mysqli_query($con,"SELECT `fac_id`, `sub_code`, `sem` FROM `teaches` ORDER BY `sem` ASC");
                 							while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
                 							{
                                 $result = mysqli_query($con,"SELECT `name`, `department` FROM `faculty` WHERE `fac_id` = '".$row['fac_id']."' ORDER BY `department` ASC");
@@ -49,7 +49,7 @@
                             <td><?php echo $fac_name['name']; ?> </td>
                             <td><?php echo $fac_name['department']; ?> </td>
               							<td><?php echo $row['sub_code']; ?> </td>
-              							<td><?php echo $row['year']; ?> </td>
+              							<td><?php echo $row['sem']; ?> </td>
               							<td>
                               <span class='delete btn btn-danger btn-xs' id="<?php echo $row['fac_id']; ?>"><i class="fa fa-trash-o"></i> Delete </span>
               							</td>

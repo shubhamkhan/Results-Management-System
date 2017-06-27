@@ -51,7 +51,6 @@
                           <td><?php echo $row['department']; ?> </td>
                           <td>
                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo $row['user_id']; ?>"><i class="fa fa-folder"></i> View </button>
-                            <a href="faculty_edit.php?id=<?php echo $row['user_id'];?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                             <span class='disable btn btn-danger btn-xs' id="<?php echo $row['user_id']; ?>"><i class="fa fa-user"></i> Disabled User </span>
                           </td>
                         </tr>
@@ -108,7 +107,7 @@
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <a href="admin_subject_details_pdf.php?id=<?php echo $row['user_id']; ?>" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+                                <a href="admin_faculty_view_pdf.php?id=<?php echo $row['user_id']; ?>" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                               </div>
                             </div>
@@ -136,7 +135,7 @@
 $(document).ready(function(){
  $('.disable').click(function(){
   var el = this;
-  var desabledid = this.id;
+  var disableid = this.id;
   $.ajax({
    url: 'disable_user.php',
    type: 'POST',

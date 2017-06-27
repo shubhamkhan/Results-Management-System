@@ -39,8 +39,8 @@ $pdf->SetFont("Times","",11);
 $pdf->Cell(35,10,"NAME",1,0,'C');
 $pdf->Cell(70,10,"ADDRESS",1,0,'C');
 $pdf->Cell(45,10,"EMAIL ID",1,0,'C');
-$pdf->Cell(20,10,"PHONE NO.",1,0,'C');
-$pdf->Cell(20,10,"DEPARTMENT",1,1,'C');
+$pdf->Cell(22,10,"PHONE NO.",1,0,'C');
+$pdf->Cell(18,10,"DEPT.",1,1,'C');
 $pdf->SetFont("Times","B",9);
 $res=mysqli_query($con,"SELECT `faculty`.`name`, `faculty`.`address`, `faculty`.`phone_no`, `faculty`.`department`, `users`.`email_id` FROM `faculty` JOIN `users` ON `faculty`.`user_id` = `users`.`user_id` WHERE `users`.`user_type`= 'Faculty' and `users`.`user_status`='0' ORDER BY `department` ASC");
 while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
@@ -48,8 +48,8 @@ while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
   $pdf->Cell(35,10,$row['name'],1,0,'C');
   $pdf->Cell(70,10,$row['address'],1,0,'C');
   $pdf->Cell(45,10,$row['email_id'],1,0,'C');
-  $pdf->Cell(20,10,$row['phone_no'],1,0,'C');
-  $pdf->Cell(20,10,$row['department'],1,1,'C');
+  $pdf->Cell(22,10,$row['phone_no'],1,0,'C');
+  $pdf->Cell(18,10,$row['department'],1,1,'C');
 }
 $pdf->output();
 ?>

@@ -2,7 +2,7 @@
   include "../resources/header_admin.php";
   if(isset($_POST['hid']))
   {
-    mysqli_query($con, "INSERT INTO `teaches` (`fac_id`, `sub_code`, `year`) VALUES ('".$_POST["fact_name"]."', '".$_POST["subj_code"]."', '".$_POST["year"]."')") or die(mysqli_error($con));
+    mysqli_query($con, "INSERT INTO `teaches` (`fac_id`, `sub_code`, `sem`) VALUES ('".$_POST["fact_name"]."', '".$_POST["subj_code"]."', '".$_POST["sem"]."')") or die(mysqli_error($con));
   }
  ?>
  <!-- jQuery custom content scroller -->
@@ -32,29 +32,33 @@
                     <form method="POST" action="" class="form-horizontal form-label-left" novalidate>
 
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Year</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select name="year" id="year" class="select2_single form-control action" tabindex="-1">
-                            <option selected="">Select Year</option>
-                            <option value="1">First Year</option>
-                            <option value="2">Second Year</option>
-                            <option value="3">Thard Year</option>
-                            <option value="4">Forth Year</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Department</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select name="dept" id="year" class="select2_single form-control action" tabindex="-1">
+                          <select name="dept" id="dept" class="select2_single form-control action" tabindex="-1">
                             <option value="" selected="">Select Department</option>
-                  					<option value="CSE">Computer Science and Engineering</option>
+                  					<option value="CST">Computer Science and Engineering</option>
                             <option value="IT">Information Technology</option>
                   					<option value="ECE">Electronics and Telecommunication Engineering</option>
                   					<option value="ME">Mechanical Engineering</option>
                             <option value="EE">Electrical Engineering</option>
                             <option value="CE">Civil Engineering</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Semester</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select name="sem" id="sem" class="select2_single form-control action" tabindex="-1">
+                            <option selected="">Select Semester</option>
+                            <option value="1">First Semester</option>
+                            <option value="2">Second Semester</option>
+                            <option value="3">Thard Semester</option>
+                            <option value="4">Forth Semester</option>
+                            <option value="5">Fifth Semester</option>
+                            <option value="6">Sixth Semester</option>
+                            <option value="7">Seven Semester</option>
+                            <option value="8">Eight Semester</option>
                           </select>
                         </div>
                       </div>
@@ -108,19 +112,21 @@ $(document).ready(function(){
   {
     var action = $(this).attr("id");
     var query = $(this).val();
+    var queryone = '';
     var result = '';
-    if(action == "year")
+    if(action == "sem")
     {
+     queryone = $('#dept').val();
      result = 'subj_code';
     }
-    else
+    if(action == "subj_code")
     {
      result = 'fact_name';
     }
     $.ajax({
       url: "fatch_teaches_code.php",
       type: "POST",
-      data: {action:action, query:query},
+      data: {action:action, query:query, queryone:queryone},
       success: function(data){
         $('#'+result).html(data);
       }

@@ -1,10 +1,10 @@
 <?php
+  include "../resources/connection.php";
   SESSION_START();
   if(!$_SESSION['khjshdagsj']){
     SESSION_DESTROY();
     header("location:index.php?msg=UnSuccessfully");
   }
-  include "../resources/connection.php";
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -105,6 +105,7 @@
                   </li>
                   <li><a><i class="fa fa-graduation-cap"></i> Takes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                      <li><a href="admin_add_takes.php">Add Takes</a></li>
                       <li><a href="admin_takes_table_view.php">Subject Takes List</a></li>
                     </ul>
                   </li>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2017 at 02:15 PM
+-- Generation Time: Jun 27, 2017 at 11:06 PM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -47,7 +47,7 @@ CREATE TABLE `faculty` (
 --
 
 INSERT INTO `faculty` (`fac_id`, `user_id`, `name`, `address`, `date_of_birth`, `phone_no`, `qualification`, `experience`, `department`, `join_date`, `last_log_in`) VALUES
-(1, 2, 'Ram', '', '0000-00-00', '8972424100', '', '', 'CST', '0000-00-00', '0000-00-00'),
+(1, 2, 'Shubham Khan', 'Bankura,722152', '0000-00-00', '8972424100', 'B.tech', '1 yr', 'CST', '0000-00-00', '0000-00-00'),
 (2, 35, 'Shampa Sarkar', 'Chhatna,Bamunkuli,Pin-722132', '1985-09-23', '1111', 'PHD', '2Yrs', 'CST', '2014-10-01', '2017-06-01'),
 (3, 36, 'Bipul Dey', 'Junction,Siliguri,Pin-755122', '1986-06-05', '2222', 'PHD', '2Yrs', 'CST', '2015-06-05', '2017-06-06'),
 (4, 37, 'Hari Singh', 'Danguajhar,Jalpaiguri,Pin-735102', '1984-06-01', '3333', 'M.tech', '4 yrs', 'CST', '2013-11-15', '2017-06-09'),
@@ -251,22 +251,8 @@ CREATE TABLE `takes` (
   `take_id` int(11) NOT NULL,
   `roll_no` int(11) NOT NULL,
   `sub_code` varchar(10) NOT NULL,
-  `year` int(1) NOT NULL
+  `sem` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `takes`
---
-
-INSERT INTO `takes` (`take_id`, `roll_no`, `sub_code`, `year`) VALUES
-(1, 17, 'AM1201', 1),
-(2, 17, 'CH1201', 1),
-(3, 17, 'CH1251', 1),
-(4, 17, 'ET1201', 1),
-(5, 17, 'ET1251', 1),
-(6, 17, 'HU1201', 1),
-(7, 17, 'MA101', 1),
-(8, 17, 'WS1251', 1);
 
 -- --------------------------------------------------------
 
@@ -277,15 +263,15 @@ INSERT INTO `takes` (`take_id`, `roll_no`, `sub_code`, `year`) VALUES
 CREATE TABLE `teaches` (
   `fac_id` int(11) NOT NULL,
   `sub_code` varchar(10) NOT NULL,
-  `year` int(1) NOT NULL
+  `sem` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teaches`
 --
 
-INSERT INTO `teaches` (`fac_id`, `sub_code`, `year`) VALUES
-(13, 'CS1251', 1);
+INSERT INTO `teaches` (`fac_id`, `sub_code`, `sem`) VALUES
+(17, 'EE304', 3);
 
 -- --------------------------------------------------------
 
@@ -314,7 +300,7 @@ INSERT INTO `users` (`user_id`, `email_id`, `password`, `user_type`, `user_statu
 (6, 'kou@gmail.com', '11111', 'Student', 0),
 (7, 'arg@gmail.com', '22222', 'Student', 0),
 (8, 'sou@gmail.com', '33333', 'Student', 0),
-(9, 'aks@gmail.com', '44444', 'Student', 0),
+(9, 'aks@gmail.com', '44444', 'Student', 1),
 (10, 'tuh@gmail.com', '55555', 'Student', 0),
 (11, 'sur@gmail.com', '66666', 'Student', 0),
 (12, 'sus@gmail.com', '77777', 'Student', 0),
@@ -324,12 +310,12 @@ INSERT INTO `users` (`user_id`, `email_id`, `password`, `user_type`, `user_statu
 (16, 'aniket@gmail.com', '11122', 'Student', 1),
 (17, 'kundan@gmail.com', '22111', 'Student', 0),
 (18, 'rahul@gmail.com', '33221', 'Student', 0),
-(19, 'aus@gmail.com', '32122', 'Student', 0),
+(19, 'aus@gmail.com', '32122', 'Student', 1),
 (20, 'snig@gmail.com', '55221', 'Student', 0),
 (21, 'sra@gmail.com', '52142', 'Student', 0),
 (22, 'pab@gmail.com', '85252', 'Student', 0),
-(23, 'anik@gmail.com', '41251', 'Student', 0),
-(24, 'ankan@gmail.com', '75541', 'Student', 0),
+(23, 'anik@gmail.com', '41251', 'Student', 1),
+(24, 'ankan@gmail.com', '75541', 'Student', 1),
 (25, 'bis@gmail.com', '77765', 'Student', 0),
 (27, 'rimo@gmail.com', '99887', 'Student', 0),
 (28, 'swarna@gmail.com', '00998', 'Student', 0),
@@ -351,7 +337,7 @@ INSERT INTO `users` (`user_id`, `email_id`, `password`, `user_type`, `user_statu
 (44, 'kinnar@gmail.com', '01543', 'Faculty', 0),
 (45, 'priyanka@gmail.com', '11089', 'Faculty', 0),
 (46, 'tam@gmail.com', '86543', 'Faculty', 0),
-(47, 'anu@gmail.com', '01654', 'Faculty', 0),
+(47, 'anu@gmail.com', '01654', 'Faculty', 1),
 (48, 'pema@gmail.com', '10697', 'Faculty', 0),
 (49, 'sachin@gmail.com', '20765', 'Faculty', 0),
 (50, 'soham@gmail.com', '30887', 'Faculty', 0),
@@ -369,7 +355,7 @@ INSERT INTO `users` (`user_id`, `email_id`, `password`, `user_type`, `user_statu
 (62, 'shema@gmail.com', '03210', 'Faculty', 0),
 (63, 'tkm@gmail.com', '00987', 'Faculty', 0),
 (64, 'rky@gmail.com', '00876', 'Faculty', 0),
-(1498427647, 'hsk@h.com', '25836', 'faculty', 0),
+(1498427647, 'hsk@h.com', '25836', 'faculty', 1),
 (1498428980, 'sk@g.com', '14725', 'student', 0);
 
 --
@@ -428,7 +414,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `takes`
 --
 ALTER TABLE `takes`
-  MODIFY `take_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;COMMIT;
+  MODIFY `take_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=377;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

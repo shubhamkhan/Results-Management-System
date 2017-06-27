@@ -17,7 +17,7 @@ if(isset($_POST['hid']) and isset($_POST['e_mail']) and isset($_POST['password']
 			SESSION_START();
 			$_SESSION['jhdhgyebha'] = md5(time().$chk_usr['user_id']);
 			$_SESSION['id'] = $chk_usr['user_id'];
-			header("location:faculty_profile_users.php?msg=Successfully");
+			header("location:faculty.php?msg=Successfully");
 		}
 		if($chk_usr['user_type'] == "Student")
 		{
