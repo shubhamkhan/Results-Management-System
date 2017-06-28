@@ -1,4 +1,5 @@
 <?php
+SESSION_START();
 if(!$_SESSION['khjshdagsj']){
 	SESSION_DESTROY();
 	header("location:index.php?msg=UnSuccessfully");

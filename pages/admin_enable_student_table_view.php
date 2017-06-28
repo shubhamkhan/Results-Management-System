@@ -89,6 +89,7 @@
                           </td>
                           <td>
                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo $row['user_id']; ?>"><i class="fa fa-folder"></i> View </button>
+                            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalone<?php echo $row['user_id']; ?>"><i class="fa fa-pencil"></i> Edit </button>
                             <span class='disable btn btn-danger btn-xs' id="<?php echo $row['user_id']; ?>"><i class="fa fa-user"></i> Disabled User </span>
                           </td>
                         </tr>
@@ -156,6 +157,59 @@
                           </div>
                         </div>
 
+                        <!-- Edit Modal -->
+                        <div class="modal fade" tabindex="-1" id="myModalone<?php echo $row['user_id']; ?>" role="dialog">
+                          <div class="modal-dialog" role="document">
+                            <!-- Edit Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h2 class="modal-title">Student details</h2>
+                              </div>
+                              <div class="modal-body">
+                                <form method="POST" action="admin_student_edit.php" class="form-horizontal form-label-left" novalidate>
+                                  <div class="form-group">
+                                    <label for="name" class="form-control-label">Name </label>
+                                    <input name="name" type="text" value="<?php echo $row['name']; ?>" id="name" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="roll" class="form-control-label">Roll No. </label>
+                                    <input name="roll" type="text" value="<?php echo $row['roll_no']; ?>" id="roll" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="reg" class="form-control-label">Registration No. </label>
+                                    <input name="reg" type="text" value="<?php echo $row['reg_no']; ?>" id="reg" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="address" class="form-control-label">Address </label>
+                                    <input name="address" type="text" value="<?php echo $row['address']; ?>" id="address" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="phone" class="form-control-label">Phone No. </label>
+                                    <input name="phone" type="text" value="<?php echo $row['phone_no']; ?>" id="phone" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="email" class="form-control-label">Email ID </label>
+                                    <input name="email" type="text" value="<?php echo $row['email_id']; ?>" id="email" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="department" class="form-control-label">Department </label>
+                                    <input name="department" type="text" value="<?php echo $row['department']; ?>" id="department" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="sem" class="form-control-label">Semester </label>
+                                    <input name="sem" type="text" value="<?php echo $row['sem']; ?>" id="sem" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                  </div>
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                                <a href="admin_student_edit.php?id=<?php echo $row['user_id']; ?>" class="btn btn-success">Submit</a>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                         <?php } ?>
                       </tbody>
                     </table>
@@ -192,29 +246,4 @@ $(document).ready(function(){
  });
 });
 
-
-$(document).ready(function(){
- // Add Class
- $('.edit').click(function(){
-  $(this).addClass('editMode');
- });
- // Save data
- $(".edit").focusout(function(){
-  $(this).removeClass("editMode");
-  var id = this.id;
-  var split_id = id.split("_");
-  var field_name = split_id[0];
-  var edit_id = split_id[1];
-  var value = $(this).text();
-  $.ajax({
-   url: "admin_student_edit.php",
-   method: "POST",
-   data: { field:field_name, value:value, id:edit_id },
-   dataType: "text",
-   success: function(data){
-     //alert(data);
-   }
-  });
- });
-});
 </script>
