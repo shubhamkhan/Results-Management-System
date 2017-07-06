@@ -1,13 +1,13 @@
 <?php
 SESSION_START();
-if(!$_SESSION['jhdhgyebha']){
+if(!$_SESSION['ayukgcystf']){
   SESSION_DESTROY();
   header("location:index.php?msg=UnSuccessfully");
 }
   include "../resources/connection.php";
-  $result = mysqli_query($con, "SELECT `fac_id`, `name` FROM `faculty` WHERE `user_id` = '".$_SESSION['id']."'");
+  $result = mysqli_query($con, "SELECT `name` FROM `student` WHERE `user_id` = '".$_SESSION['id']."'");
   $row = mysqli_fetch_array($result);
- ?>
+  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

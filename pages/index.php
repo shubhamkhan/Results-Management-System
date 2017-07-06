@@ -30,10 +30,10 @@
             <form role="form" action="login.php" method="POST">
               <h1>Login Form</h1>
               <div>
-                <input class="form-control" placeholder="E-mail" name="e_mail" type="email" required autofocus />
+                <input name="e_mail" type="email" class="form-control" placeholder="email" required autofocus />
               </div>
               <div>
-                <input class="form-control" placeholder="Password" name="password" type="password" required />
+                <input name="password" type="password" class="form-control" placeholder="Password" required />
               </div>
               <div class="form-group">
                   <div class="col-md-12">

@@ -1,12 +1,12 @@
-<!-- footer content -->
-<footer>
-  <div class="pull-right">
-    Copyright &copy; 2017. All rights reserved.
+    <!-- footer content -->
+    <footer>
+      <div class="pull-right">
+        Copyright &copy; 2017. All rights reserved.
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
   </div>
-  <div class="clearfix"></div>
-</footer>
-<!-- /footer content -->
-</div>
 </div>
 
 <!-- jQuery -->

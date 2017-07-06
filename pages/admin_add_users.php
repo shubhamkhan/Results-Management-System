@@ -3,17 +3,18 @@
   if(isset($_POST['hid'])){
     $address = $_POST['city'] .','. $_POST['dist'] .','. $_POST['state'] .','. $_POST['cnty'] .','. $_POST['pin'];
     $user_id = time()+1;
+    $pass_word = password_hash($_POST['password'], PASSWORD_DEFAULT);
     date_default_timezone_set('Asia/Kolkata');
     if($_POST['usrType'] == 'student'){
-      mysqli_query($con, "INSERT INTO `users`(`user_id`, `email_id`, `password`, `user_type`, `user_status`) VALUES ('".$user_id."','".$_POST['email']."','".$_POST['password']."','".$_POST['usrType']."','0')");
-      mysqli_query($con, "INSERT INTO `student`(`reg_no`, `roll_no`, `user_id`, `name`, `address`, `phone_no`, `sem`, `department`, `reg_date`) VALUES ('".$_POST['reg_no']."','".$_POST['roll_no']."','".$user_id."','".$_POST['name']."','".$address."','".$_POST['phone']."','".$_POST['sem']."','".$_POST['dept']."','".date("d-m-Y H:i:s")."')");
+      mysqli_query($con, "INSERT INTO `users`(`user_id`, `email_id`, `password`, `user_type`, `user_status`) VALUES ('".$user_id."','".$_POST['email']."','".$pass_word."','".$_POST['usrType']."','0')");
+      mysqli_query($con, "INSERT INTO `student`(`reg_no`, `roll_no`, `user_id`, `name`, `address`, `phone_no`, `sem`, `department`, `reg_date`) VALUES ('".$_POST['reg_no']."','".$_POST['roll_no']."','".$user_id."','".$_POST['name']."','".$address."','".$_POST['phone']."','".$_POST['sem']."','".$_POST['dept']."','".date("Y-m-d",time())."')");
     }
     if($_POST['usrType'] == 'faculty'){
       $fac_id = time();
-      mysqli_query($con, "INSERT INTO `users`(`user_id`, `email_id`, `password`, `user_type`, `user_status`) VALUES ('".$user_id."','".$_POST['email']."','".$_POST['password']."','".$_POST['usrType']."','0')");
-      mysqli_query($con, "INSERT INTO `faculty`(`fac_id`, `user_id`, `name`, `address`,`phone_no`, `department`, `join_date`) VALUES ('".$fac_id."','".$user_id."','".$_POST['name']."','".$address."','".$_POST['phone']."','".$_POST['dept']."','".date("d-m-Y H:i:s")."')");
+      mysqli_query($con, "INSERT INTO `users`(`user_id`, `email_id`, `password`, `user_type`, `user_status`) VALUES ('".$user_id."','".$_POST['email']."','".$pass_word."','".$_POST['usrType']."','0')");
+      mysqli_query($con, "INSERT INTO `faculty`(`fac_id`, `user_id`, `name`, `address`,`phone_no`, `department`, `join_date`) VALUES ('".$fac_id."','".$user_id."','".$_POST['name']."','".$address."','".$_POST['phone']."','".$_POST['dept']."','".date("Y-m-d",time())."')");
     }
-    //echo '<script type="text/javascript"> alert('.$user_id.')</script>';
+    //echo '<script type="text/javascript"> alert('.$address.')</script>';
   }
  ?>
 <!-- ===========================================================

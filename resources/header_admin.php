@@ -131,8 +131,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="profile.php"><i class="fa fa-user pull-right"></i>Profile</a></li>
-                    <li><a href="change_password.php"><i class="fa fa-lock pull-right"></i>Change Password</a></li>
+                    <li><a href="admin_change_password.php"><i class="fa fa-lock pull-right"></i>Change Password</a></li>
                     <li><a href="about.php"><i class="fa fa-cogs pull-right"></i>About</a></li>
                     <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>Log Out</a></li>
                   </ul>

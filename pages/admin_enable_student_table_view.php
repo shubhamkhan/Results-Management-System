@@ -26,7 +26,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <table id="datatable" class="table table-striped table-bordered">
+                    <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th>Name</th>
@@ -48,44 +48,28 @@
               						?>
                         <tr>
               						<td>
-                            <div contentEditable='true' class='edit' id='name_<?php echo $row['user_id'];?>'>
                               <?php echo $row['name']; ?>
-                            </div>
                           </td>
                           <td>
-                            <div contentEditable='true' class='edit' id='username_<?php echo $row['user_id'];?>'>
                               <?php echo $row['roll_no']; ?>
-                            </div>
                           </td>
               					  <td>
-                            <div contentEditable='true' class='edit' id='username_<?php echo $row['user_id'];?>'>
                               <?php echo $row['reg_no']; ?>
-                            </div>
                           </td>
                           <td>
-                            <div contentEditable='true' class='edit' id='department_<?php echo $row['user_id'];?>'>
                               <?php echo $row['department']; ?>
-                            </div>
                           </td>
               						<td>
-                            <div contentEditable='true' class='edit' id='sem_<?php echo $row['user_id'];?>'>
                               <?php echo $row['sem']; ?>
-                            </div>
                           </td>
               						<td>
-                            <div contentEditable='true' class='edit' id='address_<?php echo $row['user_id'];?>'>
                               <?php echo $row['address']; ?>
-                            </div>
                           </td>
               						<td>
-                            <div contentEditable='true' class='edit' id='username_<?php echo $row['user_id'];?>'>
                               <?php echo $row['email_id']; ?>
-                            </div>
                           </td>
               						<td>
-                            <div contentEditable='true' class='edit' id='username_<?php echo $row['user_id'];?>'>
                               <?php echo $row['phone_no']; ?>
-                            </div>
                           </td>
                           <td>
                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo $row['user_id']; ?>"><i class="fa fa-folder"></i> View </button>

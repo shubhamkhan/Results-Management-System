@@ -1,5 +1,6 @@
 <?php
   include "../resources/header_admin.php";
+  //if (strpos($string, '/') !== FALSE) { echo "It contains a /"; }
   if(isset($_POST['hid']))
 	{
     $result = mysqli_query($con, "SELECT `roll_no` FROM `student` WHERE `sem` = '".$_POST['sem']."' AND `department` = '".$_POST['dept']."'");
