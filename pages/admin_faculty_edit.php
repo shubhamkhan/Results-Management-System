@@ -6,28 +6,22 @@ if(!$_SESSION['khjshdagsj']){
 }
 include "../resources/connection.php";
 if(isset($_POST['uid'])){
-	mysqli_query($con,"UPDATE `student` SET `reg_no`='".$_POST['reg']."',`roll_no`='".$_POST['roll']."',`name`='".$_POST['name']."',`phone_no`='".$_POST['phone']."',`sem`='".$_POST['sem']."',`department`='".$_POST['department']."' WHERE `user_id` = '".$_POST['uid']."'");
+	mysqli_query($con,"UPDATE `faculty` SET `name`='".$_POST['name']."',`address`='".$_POST['address']."',`phone_no`='".$_POST['phone']."',`department`='".$_POST['department']."' WHERE `user_id` = '".$_POST['uid']."'");
 	mysqli_query($con,"UPDATE `users` SET `email_id`='".$_POST['email']."' WHERE `user_id` = '".$_POST['uid']."'");
 	echo '<td>
 			'.$_POST['name'].'
 	</td>
 	<td>
-			'.$_POST['roll'].'
-	</td>
-	<td>
-			'.$_POST['reg'].'
-	</td>
-	<td>
-			'.$_POST['department'].'
-	</td>
-	<td>
-			'.$_POST['sem'].'
+			'.$_POST['address'].'
 	</td>
 	<td>
 			'.$_POST['email'].'
 	</td>
 	<td>
 			'.$_POST['phone'].'
+	</td>
+  <td>
+			'.$_POST['department'].'
 	</td>
 	<td>
 		<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal'.$_POST['uid'].'"><i class="fa fa-folder"></i> View </button>

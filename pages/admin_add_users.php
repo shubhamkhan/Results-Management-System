@@ -7,14 +7,14 @@
     date_default_timezone_set('Asia/Kolkata');
     if($_POST['usrType'] == 'student'){
       mysqli_query($con, "INSERT INTO `users`(`user_id`, `email_id`, `password`, `user_type`, `user_status`) VALUES ('".$user_id."','".$_POST['email']."','".$pass_word."','".$_POST['usrType']."','0')");
-      mysqli_query($con, "INSERT INTO `student`(`reg_no`, `roll_no`, `user_id`, `name`, `address`, `phone_no`, `sem`, `department`, `reg_date`) VALUES ('".$_POST['reg_no']."','".$_POST['roll_no']."','".$user_id."','".$_POST['name']."','".$address."','".$_POST['phone']."','".$_POST['sem']."','".$_POST['dept']."','".date("Y-m-d",time())."')");
+      mysqli_query($con, "INSERT INTO `student`(`reg_no`, `roll_no`, `user_id`, `name`, `address`, `phone_no`, `date_of_birth`, `sem`, `department`, `reg_date`) VALUES ('".$_POST['reg_no']."','".$_POST['roll_no']."','".$user_id."','".$_POST['name']."','".$address."','".$_POST['phone']."','".date("Y-m-d", strtotime($_POST['dob']))."','".$_POST['sem']."','".$_POST['dept']."','".date("Y-m-d",time())."')");
     }
     if($_POST['usrType'] == 'faculty'){
       $fac_id = time();
       mysqli_query($con, "INSERT INTO `users`(`user_id`, `email_id`, `password`, `user_type`, `user_status`) VALUES ('".$user_id."','".$_POST['email']."','".$pass_word."','".$_POST['usrType']."','0')");
-      mysqli_query($con, "INSERT INTO `faculty`(`fac_id`, `user_id`, `name`, `address`,`phone_no`, `department`, `join_date`) VALUES ('".$fac_id."','".$user_id."','".$_POST['name']."','".$address."','".$_POST['phone']."','".$_POST['dept']."','".date("Y-m-d",time())."')");
+      mysqli_query($con, "INSERT INTO `faculty`(`fac_id`, `user_id`, `name`, `address`, `date_of_birth`, `phone_no`, `department`, `join_date`) VALUES ('".$fac_id."','".$user_id."','".$_POST['name']."','".$address."','".date("Y-m-d", strtotime($_POST['dob']))."','".$_POST['phone']."','".$_POST['dept']."','".date("Y-m-d",time())."')");
     }
-    //echo '<script type="text/javascript"> alert('.$address.')</script>';
+    //echo '<script type="text/javascript"> alert('.date("Y-m-d", strtotime($_POST['dob'])).')</script>';
   }
  ?>
 <!-- ===========================================================
@@ -64,6 +64,24 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="number" name="phone" required="required" data-validate-length-range="10" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">Date of birth <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <fieldset>
+                            <div class="control-group">
+                              <div class="controls">
+                                <div class="col-md-7 col-xs-12 xdisplay_inputx form-group has-feedback">
+                                  <input name="dob" type="text" class="form-control has-feedback-left" id="single_cal4" aria-describedby="inputSuccess2Status4">
+                                  <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                  <span id="inputSuccess2Status4" class="sr-only">(success)</span>
+                                </div>
+                              </div>
+                            </div>
+                          </fieldset>
                         </div>
                       </div>
 
@@ -123,7 +141,7 @@
                       <div class="item form-group">
                         <label for="password" class="control-label col-md-3 col-sm-3 col-xs-12">Password</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="password" name="password" data-validate-length="6,8" class="form-control col-md-7 col-xs-12" required="required">
+                          <input type="password" name="password" data-validate-length="10,12" class="form-control col-md-7 col-xs-12" required="required">
                         </div>
                       </div>
 

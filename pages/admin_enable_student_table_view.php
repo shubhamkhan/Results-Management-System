@@ -26,7 +26,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th>Name</th>
@@ -34,7 +34,6 @@
 						              <th>Registration No.</th>
 						              <th>Department</th>
 						              <th>Semester</th>
-                          <th>Address</th>
                           <th>Email ID</th>
                           <th>Phone No.</th>
 						              <th>Action</th>
@@ -42,11 +41,11 @@
                       </thead>
                       <tbody>
               						<?php
-              						$res=mysqli_query($con,"SELECT `student`.`reg_no`, `student`.`roll_no`, `student`.`user_id`, `student`.`name`, `student`.`address`, `student`.`phone_no`, `student`.`date_of_birth`, `student`.`sem`, `student`.`department`, `student`.`reg_date`, `student`.`last_log_in`, `users`.`email_id` FROM `student` JOIN `users` ON `student`.`user_id` = `users`.`user_id` WHERE `users`.`user_type`= 'Student' and `users`.`user_status`='0' ORDER BY `department`, `sem` ASC");
+              						$res=mysqli_query($con,"SELECT `student`.`reg_no`, `student`.`roll_no`, `student`.`user_id`, `student`.`name`,`student`.`phone_no`, `student`.`address`, `student`.`date_of_birth`, `student`.`sem`, `student`.`department`, `student`.`reg_date`, `student`.`last_log_in`, `users`.`email_id` FROM `student` JOIN `users` ON `student`.`user_id` = `users`.`user_id` WHERE `users`.`user_type`= 'Student' and `users`.`user_status`='0' ORDER BY `department`, `sem` ASC");
               						while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
               						{
               						?>
-                        <tr>
+                        <tr id="token<?php echo $row['user_id']; ?>">
               						<td>
                               <?php echo $row['name']; ?>
                           </td>
@@ -61,9 +60,6 @@
                           </td>
               						<td>
                               <?php echo $row['sem']; ?>
-                          </td>
-              						<td>
-                              <?php echo $row['address']; ?>
                           </td>
               						<td>
                               <?php echo $row['email_id']; ?>
@@ -151,43 +147,39 @@
                                 <h2 class="modal-title">Student details</h2>
                               </div>
                               <div class="modal-body">
-                                <form method="POST" action="admin_student_edit.php" class="form-horizontal form-label-left" novalidate>
+                                <form method="POST" class="contact form-horizontal form-label-left" novalidate>
                                   <div class="form-group">
                                     <label for="name" class="form-control-label">Name </label>
-                                    <input name="name" type="text" value="<?php echo $row['name']; ?>" id="name" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                    <input name="name" type="text" value="<?php echo $row['name']; ?>" id="name<?php echo $row['user_id']; ?>" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
                                   </div>
                                   <div class="form-group">
                                     <label for="roll" class="form-control-label">Roll No. </label>
-                                    <input name="roll" type="text" value="<?php echo $row['roll_no']; ?>" id="roll" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                    <input name="roll" type="text" value="<?php echo $row['roll_no']; ?>" id="roll<?php echo $row['user_id']; ?>" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
                                   </div>
                                   <div class="form-group">
                                     <label for="reg" class="form-control-label">Registration No. </label>
-                                    <input name="reg" type="text" value="<?php echo $row['reg_no']; ?>" id="reg" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="address" class="form-control-label">Address </label>
-                                    <input name="address" type="text" value="<?php echo $row['address']; ?>" id="address" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                    <input name="reg" type="text" value="<?php echo $row['reg_no']; ?>" id="reg<?php echo $row['user_id']; ?>" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
                                   </div>
                                   <div class="form-group">
                                     <label for="phone" class="form-control-label">Phone No. </label>
-                                    <input name="phone" type="text" value="<?php echo $row['phone_no']; ?>" id="phone" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                    <input name="phone" type="text" value="<?php echo $row['phone_no']; ?>" id="phone<?php echo $row['user_id']; ?>" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
                                   </div>
                                   <div class="form-group">
                                     <label for="email" class="form-control-label">Email ID </label>
-                                    <input name="email" type="text" value="<?php echo $row['email_id']; ?>" id="email" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                    <input name="email" type="text" value="<?php echo $row['email_id']; ?>" id="email<?php echo $row['user_id']; ?>" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
                                   </div>
                                   <div class="form-group">
                                     <label for="department" class="form-control-label">Department </label>
-                                    <input name="department" type="text" value="<?php echo $row['department']; ?>" id="department" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                    <input name="department" type="text" value="<?php echo $row['department']; ?>" id="department<?php echo $row['user_id']; ?>" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
                                   </div>
                                   <div class="form-group">
                                     <label for="sem" class="form-control-label">Semester </label>
-                                    <input name="sem" type="text" value="<?php echo $row['sem']; ?>" id="sem" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                    <input name="sem" type="text" value="<?php echo $row['sem']; ?>" id="sem<?php echo $row['user_id']; ?>" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
                                   </div>
                                 </form>
                               </div>
                               <div class="modal-footer">
-                                <a href="admin_student_edit.php?id=<?php echo $row['user_id']; ?>" class="btn btn-success">Submit</a>
+                                <button class="submit btn btn-success" id="submit_<?php echo $row['user_id']; ?>">Submit</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                               </div>
                             </div>
@@ -230,4 +222,29 @@ $(document).ready(function(){
  });
 });
 
+$(document).ready(function(){
+ $(".submit").click(function(){
+   var id = this.id;
+   var split_btn = id.split("_");
+   var update_id = split_btn[1];
+   var token = '#token'.concat(update_id);
+   var close = '#myModalone'.concat(update_id);
+   var name = $('#name'.concat(update_id)).val();
+   var roll = $('#roll'.concat(update_id)).val();
+   var reg = $('#reg'.concat(update_id)).val();
+   var phone = $('#phone'.concat(update_id)).val();
+   var email = $('#email'.concat(update_id)).val();
+   var department = $('#department'.concat(update_id)).val();
+   var sem = $('#sem'.concat(update_id)).val();
+    $.ajax({
+       type: "POST",
+       url: "admin_student_edit.php",
+       data: { uid:update_id, name:name, roll:roll, reg:reg, phone:phone, email:email, department:department, sem:sem},
+       success: function(response){
+             $(token).html(response);
+             $(close).modal('hide');
+           }
+         });
+    });
+});
 </script>

@@ -70,12 +70,12 @@ if(!$_SESSION['ayukgcystf']){
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-book"></i> Subject <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="faculty_teaches_table_view.php">Teaches Subjects</a></li>
+                      <li><a href="#">Teaches Subjects</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-users"></i> Student <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="faculty_student_subject.php">Student List</a></li>
+                      <li><a href="#">Student List</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -100,8 +100,8 @@ if(!$_SESSION['ayukgcystf']){
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="faculty_view_profile.php"><i class="fa fa-user pull-right"></i>Profile</a></li>
-                    <li><a href="faculty_change_password.php"><i class="fa fa-lock pull-right"></i>Change Password</a></li>
+                    <li><a href="student_view_profile.php"><i class="fa fa-user pull-right"></i>Profile</a></li>
+                    <li><a href="student_change_password.php"><i class="fa fa-lock pull-right"></i>Change Password</a></li>
                     <li><a href="about.php"><i class="fa fa-cogs pull-right"></i>About</a></li>
                     <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>Log Out</a></li>
                   </ul>

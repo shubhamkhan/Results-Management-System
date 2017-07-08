@@ -43,7 +43,7 @@
               						while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
               						{
               						?>
-                        <tr>
+                        <tr id="token<?php echo $row['user_id']; ?>">
               						<td><?php echo $row['name']; ?> </td>
               						<td><?php echo $row['address']; ?> </td>
               						<td><?php echo $row['email_id']; ?> </td>
@@ -51,6 +51,7 @@
                           <td><?php echo $row['department']; ?> </td>
                           <td>
                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo $row['user_id']; ?>"><i class="fa fa-folder"></i> View </button>
+                            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalone<?php echo $row['user_id']; ?>"><i class="fa fa-pencil"></i> Edit </button>
                             <span class='disable btn btn-danger btn-xs' id="<?php echo $row['user_id']; ?>"><i class="fa fa-user"></i> Disabled User </span>
                           </td>
                         </tr>
@@ -114,6 +115,47 @@
                           </div>
                         </div>
 
+                        <!-- Edit Modal -->
+                        <div class="modal fade" tabindex="-1" id="myModalone<?php echo $row['user_id']; ?>" role="dialog">
+                          <div class="modal-dialog" role="document">
+                            <!-- Edit Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h2 class="modal-title">Faculty details</h2>
+                              </div>
+                              <div class="modal-body">
+                                <form method="POST" class="contact form-horizontal form-label-left" novalidate>
+                                  <div class="form-group">
+                                    <label for="name" class="form-control-label">Name </label>
+                                    <input name="name" type="text" value="<?php echo $row['name']; ?>" id="name<?php echo $row['user_id']; ?>" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="name" class="form-control-label">Address </label>
+                                    <input name="name" type="text" value="<?php echo $row['address']; ?>" id="address<?php echo $row['user_id']; ?>" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="phone" class="form-control-label">Phone No. </label>
+                                    <input name="phone" type="text" value="<?php echo $row['phone_no']; ?>" id="phone<?php echo $row['user_id']; ?>" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="email" class="form-control-label">Email ID </label>
+                                    <input name="email" type="text" value="<?php echo $row['email_id']; ?>" id="email<?php echo $row['user_id']; ?>" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="department" class="form-control-label">Department </label>
+                                    <input name="department" type="text" value="<?php echo $row['department']; ?>" id="department<?php echo $row['user_id']; ?>" class="form-control" data-validate-length-range="6" data-validate-words="1" required="required">
+                                  </div>
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                                <button class="submit btn btn-success" id="submit_<?php echo $row['user_id']; ?>">Submit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                         <?php } ?>
                       </tbody>
                     </table>
@@ -148,5 +190,29 @@ $(document).ready(function(){
    }
   });
  });
+});
+
+$(document).ready(function(){
+ $(".submit").click(function(){
+   var id = this.id;
+   var split_btn = id.split("_");
+   var update_id = split_btn[1];
+   var token = '#token'.concat(update_id);
+   var close = '#myModalone'.concat(update_id);
+   var name = $('#name'.concat(update_id)).val();
+   var address = $('#address'.concat(update_id)).val();
+   var phone = $('#phone'.concat(update_id)).val();
+   var email = $('#email'.concat(update_id)).val();
+   var department = $('#department'.concat(update_id)).val();
+    $.ajax({
+       type: "POST",
+       url: "admin_faculty_edit.php",
+       data: { uid:update_id, name:name, address:address, phone:phone, email:email, department:department},
+       success: function(response){
+             $(token).html(response);
+             $(close).modal('hide');
+           }
+         });
+    });
 });
 </script>

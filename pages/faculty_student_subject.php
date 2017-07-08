@@ -9,7 +9,7 @@ include "../resources/header_faculty.php";
            <div class="">
              <div class="page-title">
                <div class="title_left">
-                 <h3>TEACHES</h3>
+                 <h3>STUDENT</h3>
                </div>
              </div>
 
@@ -19,9 +19,7 @@ include "../resources/header_faculty.php";
                <div class="col-md-12 col-sm-12 col-xs-12">
                  <div class="x_panel">
                    <div class="x_title">
-                     <h2>Teaches Details <small>List of topic teaches for the teacher</small></h2>
-                     <div class="pull-right">
-                     </div>
+                     <h2>Student List <small>List of student takes a subject</small></h2>
                      <div class="clearfix"></div>
                    </div>
 
@@ -49,9 +47,44 @@ include "../resources/header_faculty.php";
                							<td><?php echo $row['sem']; ?> </td>
                							<td>
                               <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo $row['sub_code']; ?>"><i class="fa fa-folder"></i> Student List </button>
+                              <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#onemyModal<?php echo $row['sub_code']; ?>"><i class="fa fa-folder"></i> Show Marks </button>
                               <a class="btn btn-primary btn-xs" href="faculty_submit_marks.php?id=<?php echo $row['sub_code']; ?>"><i class="fa fa-folder"></i> Submit Marks </a>
                							</td>
                						</tr>
+                          <!-- View Modal -->
+                          <div class="modal fade" tabindex="-1" id="onemyModal<?php echo $row['sub_code']; ?>" role="dialog">
+                            <div class="modal-dialog" role="document">
+                              <!-- View Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h2 class="modal-title">Student Marks</h2>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-12"> NAME </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">ROLL NO.</div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">THEORY MARKS</div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">PRACTICAL MARKS</div>
+                                  </div>
+                                  <?php $result=mysqli_query($con,"SELECT `takes`.`roll_no`, `takes`.`sub_code`, `student`.`name`, `marks`.`theory_marks`, `marks`.`practical_marks` FROM `takes` JOIN `student` ON `takes`.`roll_no` = `student`.`roll_no` JOIN `marks` ON `marks`.`take_id` = `takes`.`take_id` WHERE `takes`.`sub_code` = '".$row['sub_code']."'");
+                                  while($stu=mysqli_fetch_array($result,MYSQLI_ASSOC))
+                                  { ?>
+                                  <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-12"><?php echo $stu['name']; ?></div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12"><?php echo $stu['roll_no']; ?></div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12"><?php echo $stu['theory_marks']; ?></div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12"><?php echo $stu['practical_marks']; ?></div>
+                                  </div>
+                                  <?php } ?>
+                                </div>
+                                <div class="modal-footer">
+                                  <a href="admin_faculty_view_pdf.php?id=<?php echo $row['user_id']; ?>" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
 
                           <!-- View Modal -->
                           <div class="modal fade" tabindex="-1" id="myModal<?php echo $row['sub_code']; ?>" role="dialog">
