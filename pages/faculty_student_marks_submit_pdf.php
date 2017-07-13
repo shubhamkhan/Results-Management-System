@@ -12,7 +12,7 @@ class PDF extends FPDF
   {
 	$this->Image('../build/images/logo.png',10,6,20);
   $this->Image('../build/images/logo.png',180,6,20);
-	$this->Image('../build/images/jgec.png',10,90,189);
+	$this->Image('../build/images/logo.png',10,90,189);
 	$this->Ln(10);
   $this->SetFont('Arial','B',13,'C');
 	$this->SetTextColor(0,0,220);

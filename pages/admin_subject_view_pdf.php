@@ -38,7 +38,7 @@ $pdf->AddPage();
 $pdf->SetFont("Times","I",18);
 if(isset($_GET['id']))
 {
-  $res=mysqli_query($con,"SELECT `sub_code`, `th_marks`, `pr_marks`, `total_marks`, `sub_name`, `sem`, `department` FROM `subject` WHERE `sub_id` = '".$_GET['id']."'");
+  $res=mysqli_query($con,"SELECT `sub_code`, `th_marks`, `pr_marks`, `total_marks`, `sub_name`, `sem`, `department` FROM `subject` WHERE `sub_code` = '".$_GET['id']."'");
   $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
     $pdf->Cell(95,10,"Subject Code",1,0,'C');
     $pdf->Cell(95,10,$row['sub_code'],1,1,'C');

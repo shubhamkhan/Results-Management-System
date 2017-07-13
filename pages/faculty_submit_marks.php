@@ -43,7 +43,7 @@ include "../resources/header_faculty.php";
                         <form method="POST" action="" class="form-horizontal form-label-left" novalidate>
                  					<?php
                           if(isset($_GET['id'])){
-                              $result=mysqli_query($con,"SELECT `takes`.`take_id`, `takes`.`roll_no`, `takes`.`sub_code`, `student`.`name` FROM `takes` JOIN `student` ON `takes`.`roll_no` = `student`.`roll_no` WHERE `takes`.`status`= '1' AND `takes`.`sub_code` = '".$_GET['id']."'");
+                              $result=mysqli_query($con,"SELECT `takes`.`take_id`, `takes`.`roll_no`, `takes`.`sub_code`, `student`.`name` FROM `takes` JOIN `student` ON `takes`.`roll_no` = `student`.`roll_no` WHERE `takes`.`sub_code` = '".$_GET['id']."' AND `takes`.`status` = '0'");
                  							while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
                  							{
                  						?>
@@ -62,12 +62,7 @@ include "../resources/header_faculty.php";
                               </div>
                             </th>
                							<td>
-                              <?php
-                              $status=mysqli_fetch_array(mysqli_query($con,"SELECT `status` FROM `teaches` WHERE `sub_code` = '".$row['sub_code']."'"),MYSQLI_ASSOC);
-                              if($status['status'] == '1'){
-                                echo '<span class="submit btn btn-success btn-xs" id="'.$row['take_id'].'_'.$row['roll_no'].'"><i class="fa fa-user"></i> Submit </span>';
-                              }
-                              ?>
+                              <span class='submit btn btn-success btn-xs' id="<?php echo $row['take_id']; ?>_<?php echo $row['roll_no']; ?>"><i class="fa fa-user"></i> Submit </span>
                							</td>
                						</tr>
                              <?php }} ?>

@@ -39,7 +39,7 @@
                       </thead>
               				<tbody>
                 					<?php
-                							$res=mysqli_query($con,"SELECT `sub_id`, `sub_code`, `th_marks`, `pr_marks`, `total_marks`, `sub_name`, `sem`, `department` FROM `subject`");
+                							$res=mysqli_query($con,"SELECT `sub_code`, `th_marks`, `pr_marks`, `total_marks`, `sub_name`, `sem`, `department` FROM `subject`");
                 							while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
                 							{
                 					?>
@@ -49,13 +49,13 @@
               							<td><?php echo $row['sem']; ?> </td>
                             <td><?php echo $row['department']; ?> </td>
               							<td>
-                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo implode("",explode('/',$row['sub_id'])); ?>"><i class="fa fa-folder"></i> View </button>
-                                <span class='delete btn btn-danger btn-xs' id="<?php echo $row['sub_id']; ?>"><i class="fa fa-trash-o"></i> Delete </span>
+                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo $row['sub_code']; ?>"><i class="fa fa-folder"></i> View </button>
+                                <span class='delete btn btn-danger btn-xs' id="<?php echo $row['sub_code']; ?>"><i class="fa fa-trash-o"></i> Delete </span>
               							</td>
               						</tr>
 
                             <!-- View Modal -->
-                            <div class="modal fade" tabindex="-1" id="myModal<?php echo implode("",explode('/',$row['sub_id'])); ?>" role="dialog">
+                            <div class="modal fade" tabindex="-1" id="myModal<?php echo $row['sub_code']; ?>" role="dialog">
                               <div class="modal-dialog" role="document">
                                 <!-- View Modal content-->
                                 <div class="modal-content">
@@ -94,7 +94,7 @@
                                     </div>
                                   </div>
                                   <div class="modal-footer">
-                                    <a href="admin_subject_view_pdf.php?id=<?php echo $row['sub_id']; ?>" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+                                    <a href="admin_subject_view_pdf.php?id=<?php echo $row['sub_code']; ?>" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                   </div>
                                 </div>
