@@ -26,7 +26,7 @@ include "../resources/header_faculty.php";
                    </div>
 
                    <div class="x_content">
-                     <table id="datatable" class="table table-striped table-bordered">
+                     <table class="table table-striped table-bordered">
                        <thead>
                          <tr>
                            <th>Department</th>

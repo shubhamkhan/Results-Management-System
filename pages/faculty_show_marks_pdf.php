@@ -23,9 +23,9 @@ class PDF extends FPDF
 	$this->SetFont('Arial','I',13,'C');
   $this->Cell(180,5,'( AFFILIATED TO MAULANA ABUL KALAM AZAD UNIVERSITY OF TECHNOLOGY )',0,0,'C');
   $this->Ln(20);
-	$this->SetFont('Arial','',13,'C');
+	$this->SetFont('Arial','B',13,'C');
 	$this->SetTextColor(0,0,0);
-  $this->Cell(180,5,'Marks of Students',0,0,'C');
+  $this->Cell(180,5,'Students Marks',0,0,'C');
 	$this->Ln(10);
   }
   function Footer()
@@ -38,20 +38,24 @@ class PDF extends FPDF
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->SetFont("Times","",11);
+$pdf->SetFont("Times","B",11);
 $pdf->Cell(55,10,"Name",1,0,'C');
 $pdf->Cell(55,10,"Roll No.",1,0,'C');
 $pdf->Cell(40,10,"Theory Marks",1,0,'C');
-$pdf->Cell(40,10,"Practical Marks",1,1,'C');
+$pdf->Cell(40,10,"Practical Marks",1,0,'C');
+$pdf->Ln(10);
 if(isset($_GET['id'])){
-  $result=mysqli_query($con,"SELECT `takes`.`roll_no`, `student`.`name` FROM `takes` JOIN `student` ON `takes`.`roll_no` = `student`.`roll_no` WHERE `takes`.`sub_code` = '".$_GET['id']."'");
+ $result=mysqli_query($con,"SELECT `marks`.`theory_marks`, `marks`.`practical_marks`, `student`.`name`, `student`.`roll_no`, `takes`.`take_id`, `takes`.`take_id`, `takes`.`roll_no`, `subject`.`sub_code` FROM `student` JOIN `takes` ON `student`.`roll_no`=`takes`.`roll_no` JOIN `subject` ON `subject`.`sub_code`=`takes`.`sub_code` JOIN `marks` ON `takes`.`take_id`=`marks`.`take_id` WHERE `takes`.`sub_code` = '".$_GET['id']."'");
   while($stu=mysqli_fetch_array($result,MYSQLI_ASSOC))
   {
+	$pdf->SetFont("Times","",11);
     $pdf->Cell(55,10,$stu['name'],1,0,'C');
     $pdf->Cell(55,10,$stu['roll_no'],1,0,'C');
-    $pdf->Cell(40,10,"",1,0,'C');
-    $pdf->Cell(40,10,"",1,1,'C');
+    $pdf->Cell(40,10,$stu['theory_marks'],1,0,'C');
+    $pdf->Cell(40,10,$stu['practical_marks'],1,0,'C');
+	$pdf->Ln(10);
   }
 }
+
 $pdf->output();
 ?>

@@ -109,6 +109,17 @@
                       <li><a href="admin_takes_table_view.php">Subject Takes List</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-certificate"></i> Marks <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Marksheet</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-cogs"></i> Settings <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="admin_clear_entry.php">Clear Entry</a></li>
+                      <li><a href="admin_enable_disable_entry.php">Enable/Disable Entry</a></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
             </div>

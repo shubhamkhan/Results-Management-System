@@ -1,11 +1,11 @@
 <?php
   include "../resources/header_admin.php";
-  //if (strpos($string, '/') !== FALSE) { echo "It contains a /"; }
   if(isset($_POST['hid']))
 	{
     $result = mysqli_query($con, "SELECT `roll_no` FROM `student` WHERE `sem` = '".$_POST['sem']."' AND `department` = '".$_POST['dept']."'");
-    while($row = mysqli_fetch_array($result))
+    while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
     {
+      //echo '<script>alert('.$row['roll_no'].');</script>';
       for ($i = 0; $i < count($_POST['sub_code']); $i++) {
           mysqli_query($con,"INSERT INTO `takes`(`roll_no`, `sub_code`, `sem`) VALUES ('".$row['roll_no']."','".$_POST['sub_code'][$i]."','".$_POST['sem']."')") or die(mysqli_error($con));
          }
@@ -43,7 +43,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select name="dept" id="dept" class="select2_single form-control" tabindex="-1">
                             <option value="" selected="">Select Department</option>
-                            <option value="CST">Computer Science and Engineering</option>
+                            <option value="CSE">Computer Science and Engineering</option>
                             <option value="IT">Information Technology</option>
                             <option value="ECE">Electronics and Telecommunication Engineering</option>
                             <option value="ME">Mechanical Engineering</option>

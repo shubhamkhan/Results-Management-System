@@ -2,10 +2,9 @@
   include "../resources/header_admin.php";
   if(isset($_POST['hid']))
   {
-    mysqli_query($con, "INSERT INTO `teaches` (`fac_id`, `sub_code`, `sem`) VALUES ('".$_POST["fact_name"]."', '".$_POST["subj_code"]."', '".$_POST["sem"]."')") or die(mysqli_error($con));
+    mysqli_query($con, "INSERT INTO `teaches` (`fac_id`, `sub_code`, `sem`, `status`) VALUES ('".$_POST["fact_name"]."', '".$_POST["subj_code"]."', '".$_POST["sem"]."', '0')") or die(mysqli_error($con));
   }
  ?>
- <!-- jQuery custom content scroller -->
 <!-- ===========================================================
 		                       BEGIN PAGE
 		 =========================================================== -->
@@ -36,7 +35,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select name="dept" id="dept" class="select2_single form-control action" tabindex="-1">
                             <option value="" selected="">Select Department</option>
-                  					<option value="CST">Computer Science and Engineering</option>
+                  					<option value="CSE">Computer Science and Engineering</option>
                             <option value="IT">Information Technology</option>
                   					<option value="ECE">Electronics and Telecommunication Engineering</option>
                   					<option value="ME">Mechanical Engineering</option>

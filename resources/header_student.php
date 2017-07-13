@@ -70,12 +70,13 @@ if(!$_SESSION['ayukgcystf']){
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-book"></i> Subject <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Teaches Subjects</a></li>
+                      <li><a href="student_add_takes.php">Choose Subjects</a></li>
+                      <li><a href="student_subject_table_view.php">Subjects List</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-users"></i> Student <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-certificate"></i> Marks <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Student List</a></li>
+                      <li><a href="student_marksheet.php">Marksheet</a></li>
                     </ul>
                   </li>
                 </ul>
