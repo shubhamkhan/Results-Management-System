@@ -25,33 +25,35 @@ class PDF extends FPDF
   $this->Ln(20);
 	$this->SetFont('Arial','',13,'C');
 	$this->SetTextColor(0,0,0);
-  $this->Cell(180,5,'Marks of Students',0,0,'C');
+  $this->Cell(180,5,'Students Details',0,0,'C');
 	$this->Ln(10);
   }
   function Footer()
   {
       $this->SetY(-15);
       $this->SetFont('Arial','I',8);
-      //$this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+      $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
   }
 }
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->SetFont("Times","",11);
-$pdf->Cell(55,10,"Name",1,0,'C');
-$pdf->Cell(55,10,"Roll No.",1,0,'C');
-$pdf->Cell(40,10,"Theory Marks",1,0,'C');
-$pdf->Cell(40,10,"Practical Marks",1,1,'C');
+$pdf->SetFont("Times","B",11);
+$pdf->Cell(85,10,"Name",1,0,'C');
+$pdf->Cell(50,10,"Roll No.",1,0,'C');
+$pdf->Cell(50,10,"Registration No.",1,0,'C');
+$pdf->Ln(10);
 if(isset($_GET['id'])){
-  $result=mysqli_query($con,"SELECT `takes`.`roll_no`, `student`.`name` FROM `takes` JOIN `student` ON `takes`.`roll_no` = `student`.`roll_no` WHERE `takes`.`sub_code` = '".$_GET['id']."'");
+ $result=mysqli_query($con,"SELECT `subject`.`sub_name`,`subject`.`sub_code`,`student`.`name`,`student`.`roll_no`,`student`.`reg_no`,`student`.`sem` FROM `student` JOIN `subject` ON `student`.`sem`=`subject`.`sem` WHERE `subject`.`sub_code` = '".$_GET['id']."'");
   while($stu=mysqli_fetch_array($result,MYSQLI_ASSOC))
   {
-    $pdf->Cell(55,10,$stu['name'],1,0,'C');
-    $pdf->Cell(55,10,$stu['roll_no'],1,0,'C');
-    $pdf->Cell(40,10,"",1,0,'C');
-    $pdf->Cell(40,10,"",1,1,'C');
+	$pdf->SetFont("Times","",11);
+    $pdf->Cell(85,10,$stu['name'],1,0,'C');
+    $pdf->Cell(50,10,$stu['roll_no'],1,0,'C');
+    $pdf->Cell(50,10,$stu['reg_no'],1,0,'C');
+	$pdf->Ln(10);
   }
 }
+
 $pdf->output();
 ?>

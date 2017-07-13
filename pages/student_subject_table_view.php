@@ -1,5 +1,6 @@
 <?php
-  include "../resources/header_admin.php";
+  include "../resources/header_student.php";
+  $roll=mysqli_fetch_array(mysqli_query($con,"SELECT `roll_no` FROM `student` WHERE `user_id` = '".$_SESSION['id']."'"),MYSQLI_ASSOC)
  ?>
 <!-- ===========================================================
 		                       BEGIN PAGE
@@ -20,42 +21,37 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Subject Details <small>Subject record list</small></h2>
-                    <div class="pull-right">
-                      <a href="admin_subject_pdf.php" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-                    </div>
                     <div class="clearfix"></div>
                   </div>
 
                   <div class="x_content">
-                    <table id="datatable" class="table table-striped table-bordered">
+                    <table class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th>Subject Code</th>
                           <th>Subject Name</th>
-                          <th>Semester</th>
-                          <th>Department</th>
                           <th>Action</th>
                         </tr>
                       </thead>
               				<tbody>
                 					<?php
-                							$res=mysqli_query($con,"SELECT `sub_id`, `sub_code`, `th_marks`, `pr_marks`, `total_marks`, `sub_name`, `sem`, `department` FROM `subject`");
+                							$res=mysqli_query($con,"SELECT `subject`.`sub_code`, `subject`.`sub_name`, `subject`.`th_marks`, `subject`.`pr_marks`, `subject`.`total_marks`, `subject`.`sem`, `subject`.`department` FROM `subject` JOIN `takes` ON `subject`.`sub_code` = `takes`.`sub_code`WHERE `takes`.`roll_no` = '".$roll['roll_no']."'");
                 							while($row=mysqli_fetch_array($res,MYSQLI_ASSOC))
                 							{
                 					?>
               						<tr>
               							<td><?php echo $row['sub_code']; ?> </td>
               							<td><?php echo $row['sub_name']; ?> </td>
-              							<td><?php echo $row['sem']; ?> </td>
-                            <td><?php echo $row['department']; ?> </td>
               							<td>
-                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo implode("",explode('/',$row['sub_id'])); ?>"><i class="fa fa-folder"></i> View </button>
-                                <span class='delete btn btn-danger btn-xs' id="<?php echo $row['sub_id']; ?>"><i class="fa fa-trash-o"></i> Delete </span>
+                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo implode("",explode('/',$row['sub_code'])); ?>"><i class="fa fa-folder"></i> View </button>
+                                <?php if (strpos($row["sub_code"], '/') == TRUE) {
+                                echo '<span class="delete btn btn-danger btn-xs" id='.$row['sub_code'].'><i class="fa fa-trash-o"></i> Delete </span>';
+                              } ?>
               							</td>
               						</tr>
 
                             <!-- View Modal -->
-                            <div class="modal fade" tabindex="-1" id="myModal<?php echo implode("",explode('/',$row['sub_id'])); ?>" role="dialog">
+                            <div class="modal fade" tabindex="-1" id="myModal<?php echo implode("",explode('/',$row['sub_code'])); ?>" role="dialog">
                               <div class="modal-dialog" role="document">
                                 <!-- View Modal content-->
                                 <div class="modal-content">
@@ -94,7 +90,6 @@
                                     </div>
                                   </div>
                                   <div class="modal-footer">
-                                    <a href="admin_subject_view_pdf.php?id=<?php echo $row['sub_id']; ?>" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                   </div>
                                 </div>
@@ -123,7 +118,7 @@ $(document).ready(function(){
     var el = this;
     var deleteid = this.id;
     $.ajax({
-      url: 'admin_subject_delete.php',
+      url: 'student_subject_delete.php',
       type: 'POST',
       data: { id:deleteid },
       success: function(response){

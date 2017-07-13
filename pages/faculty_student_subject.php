@@ -24,7 +24,7 @@ include "../resources/header_faculty.php";
                    </div>
 
                    <div class="x_content">
-                     <table id="datatable" class="table table-striped table-bordered">
+                     <table class="table table-striped table-bordered">
                        <thead>
                          <tr>
                            <th>Subject Name</th>
@@ -63,9 +63,9 @@ include "../resources/header_faculty.php";
                                 <div class="modal-body">
                                   <div class="row">
                                     <div class="col-md-3 col-sm-3 col-xs-12"> NAME </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">ROLL NO.</div>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">THEORY MARKS</div>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">PRACTICAL MARKS</div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12"> ROLL NO. </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12"> THEORY MARKS </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12"> PRACTICAL MARKS </div>
                                   </div>
                                   <?php $result=mysqli_query($con,"SELECT `takes`.`roll_no`, `takes`.`sub_code`, `student`.`name`, `marks`.`theory_marks`, `marks`.`practical_marks` FROM `takes` JOIN `student` ON `takes`.`roll_no` = `student`.`roll_no` JOIN `marks` ON `marks`.`take_id` = `takes`.`take_id` WHERE `takes`.`sub_code` = '".$row['sub_code']."'");
                                   while($stu=mysqli_fetch_array($result,MYSQLI_ASSOC))
@@ -79,7 +79,7 @@ include "../resources/header_faculty.php";
                                   <?php } ?>
                                 </div>
                                 <div class="modal-footer">
-                                  <a href="admin_faculty_view_pdf.php?id=<?php echo $row['user_id']; ?>" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+                                  <a href="faculty_show_marks_pdf.php?id=<?php echo $row['sub_code']; ?>" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                               </div>
@@ -96,6 +96,11 @@ include "../resources/header_faculty.php";
                                   <h2 class="modal-title">Student details</h2>
                                 </div>
                                 <div class="modal-body">
+                                  <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-12"> NAME </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12"> REG NO. </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12"> ROLL NO. </div>
+                                  </div>
                                   <?php $result=mysqli_query($con,"SELECT `takes`.`roll_no`, `takes`.`sub_code`, `student`.`name`, `student`.`reg_no` FROM `takes` JOIN `student` ON `takes`.`roll_no` = `student`.`roll_no` WHERE `takes`.`sub_code` = '".$row['sub_code']."'");
                                   while($stu=mysqli_fetch_array($result,MYSQLI_ASSOC))
                                   { ?>
@@ -107,7 +112,7 @@ include "../resources/header_faculty.php";
                                   <?php } ?>
                                 </div>
                                 <div class="modal-footer">
-                                  <a href="admin_faculty_view_pdf.php?id=<?php echo $row['user_id']; ?>" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+                                  <a href="faculty_student_list_pdf.php?id=<?php echo $row['sub_code']; ?>" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                               </div>

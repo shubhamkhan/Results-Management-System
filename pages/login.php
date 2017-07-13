@@ -16,7 +16,7 @@ if(isset($_POST['hid']) and isset($_POST['e_mail']) and isset($_POST['password']
 				$_SESSION['id'] = $chk_usr['user_id'];
 				header("location:admin_add_users.php?msg=Successfully");
 			}
-			if($chk_usr['user_type'] == "Faculty")
+			if($chk_usr['user_type'] == "faculty")
 			{
 				SESSION_START();
 				$_SESSION['jhdhgyebha'] = md5(time().$chk_usr['user_id']);
@@ -24,7 +24,7 @@ if(isset($_POST['hid']) and isset($_POST['e_mail']) and isset($_POST['password']
 				mysqli_query($con,"UPDATE `faculty` SET `last_log_in` = '".date('Y-d-m h:i:s', time())."' WHERE `user_id` = '".$chk_usr['user_id']."'");
 				header("location:faculty_view_profile.php?msg=Successfully");
 			}
-			if($chk_usr['user_type'] == "Student")
+			if($chk_usr['user_type'] == "student")
 			{
 				SESSION_START();
 				$_SESSION['ayukgcystf'] = md5(time().$chk_usr['user_id']);
