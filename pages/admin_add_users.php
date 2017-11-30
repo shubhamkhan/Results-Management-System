@@ -62,7 +62,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">Mobile number <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" name="phone" required="required" data-validate-length-range="11,12" placeholder="11 digit mobile no." class="form-control col-md-7 col-xs-12">
+                          <input type="number" name="phone" required="required" data-validate-length-range="10,11" placeholder="10 digit mobile no." class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 

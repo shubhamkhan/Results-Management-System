@@ -1,10 +1,12 @@
 <?php
   include "../resources/connection.php";
   SESSION_START();
+  ob_start();
   if(!$_SESSION['khjshdagsj']){
     SESSION_DESTROY();
     header("location:index.php?msg=UnSuccessfully");
   }
+  ob_end_flush();
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +18,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Result Management System</title>
+    <!--Title icon -->
+    <link rel="icon" type="image/x-icon" href="../build/images/icon/logo.png" />
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -109,11 +113,6 @@
                       <li><a href="admin_takes_table_view.php">Subject Takes List</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-certificate"></i> Marks <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">Marksheet</a></li>
-                    </ul>
-                  </li>
                   <li><a><i class="fa fa-cogs"></i> Settings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="admin_clear_entry.php">Clear Entry</a></li>
@@ -143,7 +142,6 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="admin_change_password.php"><i class="fa fa-lock pull-right"></i>Change Password</a></li>
-                    <li><a href="about.php"><i class="fa fa-cogs pull-right"></i>About</a></li>
                     <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>Log Out</a></li>
                   </ul>
                 </li>

@@ -20,6 +20,9 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+    <script type="text/javascript">
+      alert('Login Information\nAdmin: admin@mail.com 54321\nFaculty: fac@mail.com 54321\nStudent: stu@mail.com 12345');
+    </script>
   </head>
 
   <body class="login">

@@ -9,7 +9,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>SUBJECT</h3>
+                <h3>CLEAR</h3>
               </div>
             </div>
 
@@ -19,7 +19,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Subject Details <small>Subject record list</small></h2>
+                    <h2>Clear Details <small>Clear record entry</small></h2>
                     <div class="clearfix"></div>
                   </div>
 
@@ -81,6 +81,7 @@ $(document).ready(function(){
    type: 'POST',
    data: { id:statusid },
    success: function(response){
+     alert("Successfully");
    }
   });
  });

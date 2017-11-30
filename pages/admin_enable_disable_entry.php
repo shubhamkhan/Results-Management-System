@@ -19,7 +19,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>SUBJECT</h3>
+                <h3>ENABLE DISABLE</h3>
               </div>
             </div>
 
@@ -29,7 +29,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Subject Details <small>Subject record list</small></h2>
+                    <h2>Enable Disable Details <small>Enable Disable Entry list</small></h2>
                     <div class="clearfix"></div>
                   </div>
 
@@ -44,12 +44,12 @@
               				<tbody>
               						<tr>
               							<td> Faculty marks entry </td>
-              							<td>
+              							<td id="one">
                             <?php
-                            if($statusone = '0'){
+                            if($statusone == '0'){
                               echo '<span class="status btn btn-success btn-xs" id="fme"><i class="fa fa-user"></i> Enable </span>';
                               }
-                            if($statusone = '1'){
+                            if($statusone == '1'){
                               echo '<span class="status btn btn-danger btn-xs" id="fmd"><i class="fa fa-user"></i> Disabled </span>';
                               }
                               ?>
@@ -57,12 +57,12 @@
               						</tr>
                           <tr>
               							<td> Student choose subject </td>
-              							<td>
+              							<td id="two">
                             <?php
-                              if($statustwo = '0'){
+                              if($statustwo == '0'){
                                 echo '<span class="status btn btn-success btn-xs" id="ste"><i class="fa fa-user"></i> Enable </span>';
                                 }
-                              if($statustwo = '1'){
+                              if($statustwo == '1'){
                                 echo '<span class="status btn btn-danger btn-xs" id="std"><i class="fa fa-user"></i> Disabled </span>';
                                 }
                               ?>
@@ -88,12 +88,17 @@ $(document).ready(function(){
  $('.status').click(function(){
   var el = this;
   var statusid = this.id;
+  var tok='#two';;
+  if(statusid == 'fmd' || statusid == 'fme')
+  {
+    tok = '#one';
+  }
   $.ajax({
    url: 'admin_settings.php',
    type: 'POST',
    data: { id:statusid },
    success: function(response){
-    $(el).html(response);
+     $(tok).html(response);
    }
   });
  });
