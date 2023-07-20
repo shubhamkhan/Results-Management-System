@@ -56,4 +56,4 @@ Import database and configure
 
 # License
 
-[Projetc Report](https://github.com/shubhamkhan/Results-Management-System/Internship_projetc_report.pdf) @ [Shubham Khan](https://github.com/shubhamkhan/)
+[Projetc Report](https://github.com/shubhamkhan/Results-Management-System/blob/master/Internship_project_report.pdf) @ [Shubham Khan](https://github.com/shubhamkhan/)
