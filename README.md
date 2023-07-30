@@ -1,11 +1,11 @@
 # Results Management System
 
-The "Results Management System" project is a Management system where three types of users are there
-[1] Administrator - Access all control and settings.
-[2] Faculty - Give the marks to all the students based on there the subject.
+The "Results Management System" project is a Management system where three types of users are there -<br />
+[1] Administrator - Access all control and settings. <br />
+[2] Faculty - Give the marks to all the students based on there the subject. <br />
 [3] Student - Choose the Subject, Print the mark sheet.
 
-**Live Preview**: 
+**Live Preview**: Not Available
 
 ## Technology used
 
@@ -52,7 +52,10 @@ Import database and configure
 **Note** :- You need to have XAMPP Application installed on your local machine to run this app locally.
 
 # Screenshot
-
+[1] ERD Diagram
+---
+![ERD Diagram](erdplus-diagram.png)
+---
 
 # License
 
